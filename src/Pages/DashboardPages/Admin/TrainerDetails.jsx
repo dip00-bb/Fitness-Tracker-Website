@@ -15,6 +15,24 @@ const TrainerDetails = () => {
     const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
     const [feedback, setFeedback] = useState('');
 
+    const handleApproveTrainer = async () => {
+        await axiosPublic.patch(`/approve-trainer/${id}`).then((res) => {
+            if (res.data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Approved!',
+                    text: 'Trainer status and role updated successfully.',
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: res.data.message || 'Something went wrong.',
+                });
+            }
+        });
+
+    }
 
     const { data: trainer, isLoading, isError } = useQuery({
         queryKey: ['trainerDetails', id],
@@ -131,12 +149,12 @@ const TrainerDetails = () => {
                     />
                 </div>
             </div>
-            <button className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white cursor-pointer mr-3.5">Approve</button>
+            <button onClick={handleApproveTrainer} className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white cursor-pointer mr-3.5">Approve</button>
             <button onClick={() => setIsRejectModalOpen(true)} className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white cursor-pointer">Reject</button>
 
             {/* Reject Modal */}
 
-            
+
             {isRejectModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 px-4">
                     <div className="bg-[#1f1f1f] text-white p-6 rounded-lg w-full max-w-2xl shadow-xl">
