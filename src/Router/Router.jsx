@@ -8,6 +8,7 @@ import NewsLetterSubscriber from "../Pages/DashboardPages/Admin/NewsLetterSubscr
 import DashboardLayout from "../Pages/DashboardPages/DashboardHome/Dashboard";
 import AllPendingTrainer from "../Pages/DashboardPages/Admin/AllPendingTrainer";
 import TrainerDetails from "../Pages/DashboardPages/Admin/TrainerDetails";
+import TrainerSection from "../Pages/Trainers/AllTrainers";
 
 
 export const router = createBrowserRouter([
@@ -17,8 +18,8 @@ export const router = createBrowserRouter([
         Component: MainLayout,
         children: [
             {
-                path:'/',
-                Component:Home
+                path: '/',
+                Component: Home
             },
             {
                 path: '/register',
@@ -30,26 +31,31 @@ export const router = createBrowserRouter([
             },
 
             {
-                path:'/beATrainer',
-                Component:BeTrainerForm
+                path: '/beATrainer',
+                Component: BeTrainerForm
+            },
+
+            {
+                path: '/all-trainers',
+                Component: TrainerSection
             }
         ]
     },
     {
-        path:'/dashboard',
-        Component:DashboardLayout,
-        children:[
+        path: '/dashboard',
+        Component: DashboardLayout,
+        children: [
             {
-                path:'all-newsletters',
-                Component:NewsLetterSubscriber
+                path: 'all-newsletters',
+                Component: NewsLetterSubscriber
             },
             {
-                path:'pending-trainers',
-                Component:AllPendingTrainer
+                path: 'pending-trainers',
+                Component: AllPendingTrainer
             },
             {
-                path:'pending-trainers/trainers-details/:id',
-                Component:TrainerDetails
+                path: 'pending-trainers/trainers-details/:id',
+                Component: TrainerDetails
             }
         ]
     }

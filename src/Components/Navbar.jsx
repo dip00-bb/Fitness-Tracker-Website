@@ -19,7 +19,7 @@ const Navbar = () => {
     const link =
         <>
             <li><NavLink className='text-[1.2rem] hover:text-green-500'>Home</NavLink></li>
-            <li><NavLink className='text-[1.2rem] hover:text-green-500'>All Trainer</NavLink></li>
+            <li><NavLink to='/all-trainers' className='text-[1.2rem] hover:text-green-500'>All Trainer</NavLink></li>
             <li><NavLink className='text-[1.2rem] hover:text-green-500'>All Class</NavLink></li>
             {
                 user &&

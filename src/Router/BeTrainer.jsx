@@ -25,6 +25,7 @@ const skillsOptions = [
 const BeTrainerForm = () => {
     const { user } = use(AuthContext);
     const userEmail = user?.email;
+    const fullName = user?.displayName;
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -61,6 +62,7 @@ const BeTrainerForm = () => {
         const payload = {
             ...formData,
             email: userEmail,
+            fullName:fullName,
             availableDays: formData.availableDays.map((d) => d.value),
         };
 
@@ -104,10 +106,10 @@ const BeTrainerForm = () => {
                     <label className="block mb-1">Full Name</label>
                     <input
                         type="text"
-                        className="w-full p-3 rounded bg-[#2a2a2a] text-white"
-                        value={formData.fullName}
-                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                        required
+                        className="w-full p-3 rounded bg-gray-700 text-white cursor-not-allowed"
+                        value={fullName}
+                        readOnly
+                        
                     />
                 </div>
 
