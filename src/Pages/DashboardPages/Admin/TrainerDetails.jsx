@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import moment from 'moment';
 import Loader from '../../../Utils/Loader';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 const TrainerDetails = () => {
     const { id } = useParams();
+
+
+
+    // Add state above return
+    const [isRejectModalOpen, setIsRejectModalOpen] = useState(false);
+    const [feedback, setFeedback] = useState('');
+
 
     const { data: trainer, isLoading, isError } = useQuery({
         queryKey: ['trainerDetails', id],
@@ -18,6 +26,7 @@ const TrainerDetails = () => {
 
     if (isLoading) return <Loader />;
     if (isError) return <div className="text-red-500 p-6">Error loading trainer details.</div>;
+
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#141414] via-[#1f1f1f] to-[#181818] text-white py-10 px-4 md:px-20">
@@ -114,7 +123,7 @@ const TrainerDetails = () => {
                 </div>
 
                 {/* Right Image */}
-                <div className="flex md:justify-center py-7">
+                <div className="flex md:justify-center py-7 lg:mt-18">
                     <img
                         src={trainer.profileImage}
                         alt={trainer.fullName}
@@ -123,7 +132,81 @@ const TrainerDetails = () => {
                 </div>
             </div>
             <button className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white cursor-pointer mr-3.5">Approve</button>
-            <button className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white cursor-pointer">Reject</button>
+            <button onClick={() => setIsRejectModalOpen(true)} className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white cursor-pointer">Reject</button>
+
+            {/* Reject Modal */}
+
+            
+            {isRejectModalOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 px-4">
+                    <div className="bg-[#1f1f1f] text-white p-6 rounded-lg w-full max-w-2xl shadow-xl">
+                        <h2 className="text-2xl font-bold mb-4 text-red-400">Reject Trainer Application</h2>
+
+                        <div className="space-y-2 text-gray-300">
+                            <p><span className="font-semibold text-white">Name:</span> {trainer.fullName}</p>
+                            <p><span className="font-semibold text-white">Email:</span> {trainer.email}</p>
+                            <p><span className="font-semibold text-white">Age:</span> {trainer.age}</p>
+                            <p><span className="font-semibold text-white">Experience:</span> {trainer.experience} Years</p>
+                            <p><span className="font-semibold text-white">Available:</span> {trainer.availableDays.join(', ')} ({trainer.availableTime})</p>
+                        </div>
+
+                        <div className="mt-4">
+                            <label className="block mb-1 text-white font-semibold">Rejection Feedback</label>
+                            <textarea
+                                className="w-full p-3 rounded bg-[#2a2a2a] text-white"
+                                placeholder="Write your feedback here..."
+                                value={feedback}
+                                onChange={(e) => setFeedback(e.target.value)}
+                                rows="4"
+                            />
+                        </div>
+
+                        <div className="flex justify-end gap-4 mt-6">
+                            <button
+                                onClick={() => setIsRejectModalOpen(false)}
+                                className="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={async () => {
+                                    try {
+                                        const res = await axiosPublic.post(`/reject-trainer/${id}`, {
+                                            feedback,
+                                        });
+
+                                        if (res.data.success) {
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Trainer Rejected',
+                                                text: 'The trainer has been successfully rejected.',
+                                            });
+                                            setIsRejectModalOpen(false);
+                                            // Optional: Navigate or refetch here
+                                        } else {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Failed',
+                                                text: res.data.message || 'Rejection failed',
+                                            });
+                                        }
+                                    } catch (err) {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Error',
+                                            text: err.message,
+                                        });
+                                    }
+                                }}
+                                className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded"
+                            >
+                                Submit Rejection
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 };
