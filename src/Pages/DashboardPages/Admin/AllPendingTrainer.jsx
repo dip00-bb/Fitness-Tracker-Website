@@ -36,8 +36,6 @@ const AllPendingTrainer = () => {
                             <td className="py-3 px-4">{trainer.email}</td>
                             <td className="py-3 px-4 capitalize">{trainer.status}</td>
                             <td className="py-3 px-4 flex gap-2">
-                                <button className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white cursor-pointer">Approve</button>
-                                <button className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white cursor-pointer">Reject</button>
                                 <Link to={`trainers-details/${trainer._id}`} className="bg-blue-800 hover:bg-blue-700 px-4 py-2 rounded text-white cursor-pointer">Details</Link>
                             </td>
                         </tr>
