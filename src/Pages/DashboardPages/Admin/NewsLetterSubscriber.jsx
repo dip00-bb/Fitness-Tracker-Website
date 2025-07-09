@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
+import Loader from '../../../Utils/Loader';
 
 
 const NewsLetterSubscriber = () => {
@@ -12,7 +13,7 @@ const NewsLetterSubscriber = () => {
         }
     });
 
-    if (isLoading) return <p className="text-white p-4">Loading subscribers...</p>;
+    if (isLoading) return <Loader/>;
     if (isError) return <p className="text-red-500 p-4">Failed to fetch subscribers</p>;
 
     return (

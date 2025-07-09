@@ -6,6 +6,8 @@ import Home from "../Pages/Home/Home";
 import BeTrainerForm from "./BeTrainer";
 import NewsLetterSubscriber from "../Pages/DashboardPages/Admin/NewsLetterSubscriber";
 import DashboardLayout from "../Pages/DashboardPages/DashboardHome/Dashboard";
+import AllPendingTrainer from "../Pages/DashboardPages/Admin/AllPendingTrainer";
+import TrainerDetails from "../Pages/DashboardPages/Admin/TrainerDetails";
 
 
 export const router = createBrowserRouter([
@@ -40,6 +42,14 @@ export const router = createBrowserRouter([
             {
                 path:'all-newsletters',
                 Component:NewsLetterSubscriber
+            },
+            {
+                path:'pending-trainers',
+                Component:AllPendingTrainer
+            },
+            {
+                path:'pending-trainers/trainers-details/:id',
+                Component:TrainerDetails
             }
         ]
     }

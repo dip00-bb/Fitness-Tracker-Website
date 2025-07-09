@@ -25,7 +25,7 @@ const Navbar = () => {
                 user &&
 
                 <>
-                    <li><NavLink className='text-[1.2rem] hover:text-green-500'>Dashboard</NavLink></li>
+                    <li><NavLink to='/dashboard/all-newsletters' className='text-[1.2rem] hover:text-green-500'>Dashboard</NavLink></li>
                     <li><NavLink className='text-[1.2rem] hover:text-green-500'>User Profile</NavLink></li>
                 </>
             }

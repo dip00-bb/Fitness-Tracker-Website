@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
-import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserCircle, FaLocationArrow, FaUserCheck, FaClock, FaMotorcycle, FaTasks, FaMedal } from 'react-icons/fa';
+import { FaHome, FaMoneyCheckAlt, FaUserCircle, FaLocationArrow, FaUserCheck, FaClock, FaMotorcycle, FaTasks, FaMedal } from 'react-icons/fa';
+import { GiMuscleUp } from 'react-icons/gi';
+import { MdPending } from 'react-icons/md';
 
 const DashboardLayout = () => {
 
@@ -53,13 +55,13 @@ const DashboardLayout = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/dashboard/paymentHistory'>
-                            <FaMoneyCheckAlt className="inline mr-2" /> Payment History
+                        <NavLink to='/dashboard/all-trainers'>
+                            <GiMuscleUp className="inline mr-2" /> All Trainers
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/dashboard/profile'>
-                            <FaUserCircle className="inline mr-2" /> Profile
+                        <NavLink to='/dashboard/pending-trainers'>
+                            <MdPending className="inline mr-2" />  Applied Trainers
                         </NavLink>
                     </li>
 
