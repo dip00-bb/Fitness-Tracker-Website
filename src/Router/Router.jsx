@@ -13,6 +13,8 @@ import ApprovedTrainerDetails from "../Pages/Trainers/ApprovedTrainerDetails";
 import AddClass from "../Pages/DashboardPages/Admin/AddClass";
 import AllClasses from "../Pages/Classes/AllClasses";
 import ManageTrainer from "../Pages/DashboardPages/Admin/ManageTrainer";
+import ManageSlot from "../Pages/DashboardPages/Trainer/ManageSlot";
+import AddNewSlot from "../Pages/DashboardPages/Trainer/AddNewSlot";
 
 
 export const router = createBrowserRouter([
@@ -79,6 +81,21 @@ export const router = createBrowserRouter([
             {
                 path:'all-trainers-list',
                 Component:ManageTrainer
+            },
+
+
+
+            // Trainer
+
+            {
+                path:'manage-slots',
+                Component:ManageSlot
+
+            },
+
+            {
+                path:'add-new-slot',
+                Component:AddNewSlot
             }
 
 

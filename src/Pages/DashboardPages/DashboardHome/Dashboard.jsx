@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
-import { FaHome, FaLocationArrow, FaMedal, FaPlusCircle, FaCalendarPlus, FaClipboardList,FaUserCircle, FaRegClock, FaUserCheck  } from 'react-icons/fa';
+import { FaHome, FaLocationArrow, FaMedal, FaPlusCircle, FaCalendarPlus, FaClipboardList, FaUserCircle, FaRegClock, FaUserCheck } from 'react-icons/fa';
 import { GiMuscleUp } from 'react-icons/gi';
 import { MdPending } from 'react-icons/md';
 
@@ -82,17 +82,7 @@ const DashboardLayout = () => {
                     {/* admin  */}
 
                     {/* Trainer */}
-                    <li>
-                        <NavLink to="/dashboard/add-forum">
-                            <FaPlusCircle className="inline mr-2" /> Add New Forum
-                        </NavLink>
-                    </li>
 
-                    <li>
-                        <NavLink to="/dashboard/add-slot">
-                            <FaCalendarPlus className="inline mr-2" /> Add New Slot
-                        </NavLink>
-                    </li>
 
 
                     <li>
@@ -100,6 +90,21 @@ const DashboardLayout = () => {
                             <FaClipboardList className="inline mr-2" /> Manage Slots
                         </NavLink>
                     </li>
+
+                    <li>
+                        <NavLink to="/dashboard/add-new-slot">
+                            <FaCalendarPlus className="inline mr-2" /> Add New Slot
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to="/dashboard/add-forum">
+                            <FaPlusCircle className="inline mr-2" /> Add New Forum
+                        </NavLink>
+                    </li>
+
+
+
                     {/* Trainer */}
 
 
