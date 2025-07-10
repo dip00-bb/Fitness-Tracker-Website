@@ -11,6 +11,7 @@ import TrainerDetails from "../Pages/DashboardPages/Admin/TrainerDetails";
 import TrainerSection from "../Pages/Trainers/AllTrainers";
 import ApprovedTrainerDetails from "../Pages/Trainers/ApprovedTrainerDetails";
 import AddClass from "../Pages/DashboardPages/Admin/AddClass";
+import AllClasses from "../Pages/Classes/AllClasses";
 
 
 export const router = createBrowserRouter([
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
             {
                 path:'/trainer-details/:id',
                 Component:ApprovedTrainerDetails
+            },
+            {
+                path:'/all-classes',
+                Component: AllClasses
             }
         ]
     },
@@ -63,6 +68,8 @@ export const router = createBrowserRouter([
                 path: 'pending-trainers/trainers-details/:id',
                 Component: TrainerDetails
             },
+
+            
             {
                 path:'add-class',
                 Component:AddClass

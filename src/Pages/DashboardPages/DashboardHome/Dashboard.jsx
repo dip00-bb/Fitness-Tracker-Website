@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
-import { FaHome, FaMoneyCheckAlt, FaUserCircle, FaLocationArrow, FaUserCheck, FaClock, FaMotorcycle, FaTasks, FaMedal } from 'react-icons/fa';
+import { FaHome, FaLocationArrow, FaMedal, FaPlusCircle, FaCalendarPlus, FaClipboardList,FaUserCircle, FaRegClock, FaUserCheck  } from 'react-icons/fa';
 import { GiMuscleUp } from 'react-icons/gi';
 import { MdPending } from 'react-icons/md';
 
@@ -78,8 +78,51 @@ const DashboardLayout = () => {
                         </NavLink>
                     </li>
 
+
                     {/* admin  */}
 
+                    {/* Trainer */}
+                    <li>
+                        <NavLink to="/dashboard/add-forum">
+                            <FaPlusCircle className="inline mr-2" /> Add New Forum
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to="/dashboard/add-slot">
+                            <FaCalendarPlus className="inline mr-2" /> Add New Slot
+                        </NavLink>
+                    </li>
+
+
+                    <li>
+                        <NavLink to="/dashboard/manage-slots">
+                            <FaClipboardList className="inline mr-2" /> Manage Slots
+                        </NavLink>
+                    </li>
+                    {/* Trainer */}
+
+
+
+                    {/* Member */}
+                    <li>
+                        <NavLink to="/dashboard/booked-trainer">
+                            <FaUserCheck className="inline mr-2" /> Booked Trainer
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to="/dashboard/profile">
+                            <FaUserCircle className="inline mr-2" /> Profile
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to="/dashboard/activity-log">
+                            <FaRegClock className="inline mr-2" /> Activity Log
+                        </NavLink>
+                    </li>
+                    {/* Member */}
 
                 </ul>
             </div>

@@ -5,6 +5,7 @@ import FeaturedSection from './FeaturedSection';
 import About from './About';
 import ReviewCarousel from './Reviews';
 import TestimonialCarousel from './Reviews';
+import TeamSection from './Team';
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
             <About/>
             <Newsletter/>
             <TestimonialCarousel/>
+            <TeamSection/>
         </div>
     );
 };
