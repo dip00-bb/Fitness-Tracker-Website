@@ -12,6 +12,7 @@ import TrainerSection from "../Pages/Trainers/AllTrainers";
 import ApprovedTrainerDetails from "../Pages/Trainers/ApprovedTrainerDetails";
 import AddClass from "../Pages/DashboardPages/Admin/AddClass";
 import AllClasses from "../Pages/Classes/AllClasses";
+import ManageTrainer from "../Pages/DashboardPages/Admin/ManageTrainer";
 
 
 export const router = createBrowserRouter([
@@ -56,6 +57,9 @@ export const router = createBrowserRouter([
         path: '/dashboard',
         Component: DashboardLayout,
         children: [
+
+            // admin 
+
             {
                 path: 'all-newsletters',
                 Component: NewsLetterSubscriber
@@ -68,12 +72,17 @@ export const router = createBrowserRouter([
                 path: 'pending-trainers/trainers-details/:id',
                 Component: TrainerDetails
             },
-
-            
             {
                 path:'add-class',
                 Component:AddClass
+            },
+            {
+                path:'all-trainers-list',
+                Component:ManageTrainer
             }
+
+
+
         ]
     }
 

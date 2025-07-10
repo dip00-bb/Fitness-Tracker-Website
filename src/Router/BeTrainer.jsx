@@ -3,6 +3,7 @@ import Select from 'react-select';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../Context/AuthContext/AuthContext';
 import axiosPublic from '../Hooks/useAxiosPublic';
+import useTitle from '../Hooks/useTitle';
 
 const daysOptions = [
     { value: 'Sunday', label: 'Sunday' },
@@ -23,6 +24,9 @@ const skillsOptions = [
 ];
 
 const BeTrainerForm = () => {
+
+    useTitle('Be Rider')
+
     const { user } = use(AuthContext);
     const userEmail = user?.email;
     const fullName = user?.displayName;

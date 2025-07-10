@@ -61,7 +61,7 @@ const DashboardLayout = () => {
                     </li>
 
                     <li>
-                        <NavLink to='/dashboard/all-trainers'>
+                        <NavLink to='/dashboard/all-trainers-list'>
                             <GiMuscleUp className="inline mr-2" /> All Trainers
                         </NavLink>
                     </li>
