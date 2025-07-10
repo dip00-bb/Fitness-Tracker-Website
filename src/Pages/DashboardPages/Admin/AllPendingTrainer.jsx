@@ -42,7 +42,7 @@ const AllPendingTrainer = () => {
                     ))}
                 </tbody>
             </table>
-        </div>
+        </div>  
     );
 };
 

@@ -49,16 +49,23 @@ const DashboardLayout = () => {
                             <FaHome className="inline mr-2" /> Home
                         </NavLink>
                     </li>
+
+
+
+                    {/* admin  */}
+
                     <li>
                         <NavLink to='/dashboard/all-newsletters'>
                             <FaMedal className="inline mr-2" /> All NewsLetter
                         </NavLink>
                     </li>
+
                     <li>
                         <NavLink to='/dashboard/all-trainers'>
                             <GiMuscleUp className="inline mr-2" /> All Trainers
                         </NavLink>
                     </li>
+
                     <li>
                         <NavLink to='/dashboard/pending-trainers'>
                             <MdPending className="inline mr-2" />  Applied Trainers
@@ -66,66 +73,13 @@ const DashboardLayout = () => {
                     </li>
 
                     <li>
-                        <NavLink to='/dashboard/track'>
-                            <FaLocationArrow className="inline mr-2" /> Track Package
+                        <NavLink to='/dashboard/add-class'>
+                            <FaLocationArrow className="inline mr-2" /> Add Class
                         </NavLink>
                     </li>
 
+                    {/* admin  */}
 
-                    {/* rider links */}
-
-                    {
-
-                        <>
-                            <li>
-                                <NavLink to='/dashboard/pending-deliveries'>
-                                    <FaTasks className="inline mr-2" /> Pending Deliveries
-                                </NavLink>
-                            </li>
-
-                            <li>
-                                <NavLink to='/dashboard/my-earning'>
-                                    <FaMoneyCheckAlt className="inline mr-2" /> My Earning
-                                </NavLink>
-                            </li>
-                        </>
-                    }
-
-
-
-
-
-                    {/* admin link */}
-
-                    {
-
-
-                        <>
-                            <li>
-                                <NavLink to='/dashboard/pending-rider'>
-                                    <FaUserCheck className="inline mr-2" /> Pending Rider
-                                </NavLink>
-                            </li>
-
-                            <li>
-                                <NavLink to='/dashboard/approved-rider'>
-                                    <FaClock className="inline mr-2" /> Active Rider
-                                </NavLink>
-                            </li>
-
-                            <li>
-                                <NavLink to='/dashboard/makeAdmin'>
-                                    <FaUserCheck className="inline mr-2" /> Make Admin
-                                </NavLink>
-                            </li>
-
-                            <li>
-                                <NavLink to='/dashboard/assign-rider'>
-                                    <FaMotorcycle className="inline mr-2" /> Assign Rider
-                                </NavLink>
-                            </li>
-                        </>
-                    }
 
                 </ul>
             </div>

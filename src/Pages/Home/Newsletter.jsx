@@ -79,7 +79,7 @@ const Newsletter = () => {
 
     return (
         <div className="text-white">
-            <div className="p-10 md:flex items-center justify-between gap-10 bg-black">
+            <div className="py-10 md:flex items-center justify-between gap-10 bg-black">
                 {/* Left Content */}
                 <div className="md:w-1/2 mb-6 md:mb-0">
                     <h2 className="text-4xl md:text-6xl font-bold mb-4">

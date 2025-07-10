@@ -21,18 +21,20 @@ const TrainerSection = () => {
     return (
         <div className="py-12 px-4 md:px-20 bg-[#0e0e0e] text-white">
             <h2 className="text-4xl font-bold text-center mb-10">Our Trainers</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
                 {trainers.map((trainer) => (
-                    <div key={trainer._id} className="bg-[#1a1a1a] rounded-xl p-6 shadow-xl hover:shadow-green-500/20 transition flex flex-col">
-                        <img
-                            src={trainer.profileImage}
-                            alt={trainer.fullName}
-                            className="w-full h-64 object-cover rounded-lg mb-5"
-                        />
+                    <div key={trainer._id} className="bg-[#1a1a1a] rounded-xl p-6 shadow-xl hover:shadow-red-500/20 transition flex flex-col">
+                        <div className='h-64'>
+                            <img
+                                src={trainer.profileImage}
+                                alt={trainer.fullName}
+                                className="w-full h-full rounded-lg mb-5"
+                            />
+                        </div>
                         <h3 className="text-2xl font-bold text-green-400 mb-2">{trainer.fullName}</h3>
-                        <p className="text-gray-300 mb-1"><span className="text-white font-semibold">Experience:</span> {trainer.experience}+ Years</p>
+                        {/* <p className="text-gray-300 mb-1"><span className="text-white font-semibold">Experience:</span> {trainer.experience}+ Years</p> */}
                         <p className="text-gray-300 mb-1"><span className="text-white font-semibold">Available:</span> {trainer.availableDays.join(', ')} ({trainer.availableTime})</p>
-                        <p className="text-gray-300 mb-3">{trainer.otherInfo}</p>
+                        {/* <p className="text-gray-300 mb-3">{trainer.otherInfo}</p> */}
 
                         {/* Social Icons */}
                         <div className="flex items-center gap-4 text-xl mb-4 ">

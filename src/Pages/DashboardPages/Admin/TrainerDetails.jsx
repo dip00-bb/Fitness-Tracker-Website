@@ -7,6 +7,7 @@ import axiosPublic from '../../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 
 const TrainerDetails = () => {
+    
     const { id } = useParams();
 
 

@@ -5,8 +5,10 @@ import { Outlet } from 'react-router';
 const MainLayout = () => {
     return (
         <div>
-            <Navbar/>
-            <Outlet/>
+            <header className='top-0 sticky'>
+                <Navbar />
+            </header>
+            <Outlet />
         </div>
     );
 };
