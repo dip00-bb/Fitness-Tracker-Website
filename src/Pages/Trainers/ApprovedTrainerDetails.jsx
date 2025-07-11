@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
-import moment from 'moment';
+// import moment from 'moment';
 import axiosPublic from '../../Hooks/useAxiosPublic';
 import Loader from '../../Utils/Loader';
 
@@ -65,10 +65,10 @@ const ApprovedTrainerDetails = () => {
               <p className="text-sm text-gray-400 mb-1">Available Days</p>
               <p className="font-semibold">{trainer.availableDays.join(', ')}</p>
             </div>
-            <div className="sm:col-span-2">
+            {/* <div className="sm:col-span-2">
               <p className="text-sm text-gray-400 mb-1">Applied At</p>
               <p className="font-semibold">{moment(trainer.appliedAt).format('MMMM Do YYYY, h:mm A')}</p>
-            </div>
+            </div> */}
           </div>
 
           {/* Skills */}
@@ -133,7 +133,7 @@ const ApprovedTrainerDetails = () => {
         </div>
 
         {/* Available Slots Section */}
-        <div className="bg-[#1f1f1f] p-8 rounded-md shadow-lg transition-all duration-300 hover:shadow-red-500/20">
+        <div className="bg-[#1f1f1f] p-8 rounded-md shadow-lg transition-all duration-300 hover:shadow-red-500/20 h-fit">
           <h2 className="text-3xl font-bold mb-6 text-red-500">Available Slots</h2>
           <p className="text-gray-400 mb-4">
             Select any of the following available days to book a session with {trainer.fullName}.

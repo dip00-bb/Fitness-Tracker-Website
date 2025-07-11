@@ -15,6 +15,13 @@ const daysOptions = [
     { value: 'Saturday', label: 'Saturday' },
 ];
 
+
+// const slotName = [
+//     { value: 'Morning', label: 'Morning' },
+//     { value: 'Evening', label: 'Evening' },
+//     { value: 'Night', label: 'Night' },
+// ]
+
 const skillsOptions = [
     'Yoga',
     'Weight Training',
@@ -25,7 +32,7 @@ const skillsOptions = [
 
 const BeTrainerForm = () => {
 
-    useTitle('Be Rider')
+    useTitle('Be Trainer')
 
     const { user } = use(AuthContext);
     const userEmail = user?.email;
@@ -36,6 +43,7 @@ const BeTrainerForm = () => {
         age: '',
         profileImage: '',
         availableDays: [],
+        // availableDayPart:'',
         availableTime: '',
         skills: [],
         experience: '',
@@ -58,7 +66,13 @@ const BeTrainerForm = () => {
 
     const handleDaysChange = (selectedOptions) => {
         setFormData((prev) => ({ ...prev, availableDays: selectedOptions }));
+        // console.log(formData.availableDays)
     };
+
+    // const handleDayPartChange = (selectedOptions) => {
+    //     setFormData((prev) =>({ ...prev, availableDayPart: selectedOptions }));
+    //     console.log(formData.availableDayPart)
+    // };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,8 +80,9 @@ const BeTrainerForm = () => {
         const payload = {
             ...formData,
             email: userEmail,
-            fullName:fullName,
+            fullName: fullName,
             availableDays: formData.availableDays.map((d) => d.value),
+            availableDayPart:formData.availableDayPart.map((d)=>d.value)
         };
 
         try {
@@ -113,7 +128,7 @@ const BeTrainerForm = () => {
                         className="w-full p-3 rounded bg-gray-700 text-white cursor-not-allowed"
                         value={fullName}
                         readOnly
-                        
+
                     />
                 </div>
 
@@ -175,12 +190,24 @@ const BeTrainerForm = () => {
                     />
                 </div>
 
+                {/* <div>
+                    <label className="block mb-1">Slot Time</label>
+                    <Select
+                        isMulti
+                        options={slotName}
+                        onChange={handleDayPartChange}
+                        value={formData.availableDayPart}
+                        className="text-black"
+                    />
+                </div> */}
+
+
                 <div>
-                    <label className="block mb-1">Available Time</label>
+                    <label className="block mb-1">Available Time (hour) </label>
                     <input
                         type="text"
-                        placeholder="Ex: 6PM - 9PM"
                         className="w-full p-3 rounded bg-[#2a2a2a] text-white"
+                        placeholder='Ex: 1'
                         value={formData.availableTime}
                         onChange={(e) => setFormData({ ...formData, availableTime: e.target.value })}
                     />
