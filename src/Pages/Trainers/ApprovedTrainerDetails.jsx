@@ -66,6 +66,11 @@ const ApprovedTrainerDetails = () => {
               <p className="font-semibold">{trainer?.availableDays?.join(', ')}</p>
             </div>
 
+            <div className="sm:col-span-2">
+              <p className="text-sm text-gray-400 mb-1">Available Days</p>
+              <p className="font-semibold">{trainer?.availableDays?.join(', ')}</p>
+            </div>
+
           </div>
 
           {/* Skills */}

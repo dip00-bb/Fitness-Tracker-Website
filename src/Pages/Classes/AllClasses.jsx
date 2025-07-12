@@ -3,6 +3,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axiosPublic from '../../Hooks/useAxiosPublic';
 import Loader from '../../Utils/Loader';
+import { Link } from 'react-router';
 
 const AllClasses = () => {
   /* fetch classes */
@@ -19,7 +20,7 @@ const AllClasses = () => {
   });
 
   if (isLoading) return <Loader />;
-  if (isError)   return <p className="text-red-500 p-6">Failed to load classes.</p>;
+  if (isError) return <p className="text-red-500 p-6">Failed to load classes.</p>;
 
   return (
     <section className="min-h-screen bg-[#0d0d0d] text-white py-12 px-4 md:px-16">
@@ -51,9 +52,22 @@ const AllClasses = () => {
               )}
 
               <div className="card-actions justify-end">
-                <button className="btn btn-sm bg-lime-600 hover:bg-lime-700 text-white border-none">
-                  Explore
-                </button>
+                {/* Trainer Avatars */}
+                {cls.trainer && cls.trainer.length > 0 && (
+                  <div className="flex -space-x-3 mt-4">
+                    {cls.trainer.map((tr, idx) => (
+                      <Link to={`/trainer-details/${tr.trainerID}`}>
+                        <img
+                          key={idx}
+                          src={tr.trainerImage}
+                          alt={tr.trainerEmail}
+                          className="w-10 h-10 rounded-full border-2 border-white object-cover"
+                        />
+                      </Link>
+                    ))}
+                  </div>
+                )}
+
               </div>
             </div>
           </div>

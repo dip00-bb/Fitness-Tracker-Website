@@ -60,12 +60,13 @@ const AddNewSlot = () => {
   const onSubmit = async (data) => {
     const trainerEmail = trainer.email;
     const trainerImage = trainer.profileImage;
+    const trainerID=trainer._id;
 
     try {
       /* ───────── 1) TRY to add trainer to the class ───────── */
       const addTrainerRes = await axiosPublic.patch(
         `/insert-trainer-in-class/${data.classId.value}`,
-        { trainerEmail, trainerImage }
+        { trainerEmail, trainerImage,trainerID }
       );
 
       /* If backend returns success === false, throw for catch */
@@ -85,7 +86,7 @@ const AddNewSlot = () => {
       });
 
       Swal.fire('Success', 'Slot added!', 'success');
-      reset();                      // clear the form if needed
+      reset();                      
     } catch (err) {
       /* Error could be duplicate trainer or max‑5 message */
       const msg =
