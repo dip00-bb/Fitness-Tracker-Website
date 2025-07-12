@@ -56,10 +56,28 @@ const AddNewSlot = () => {
     if (email) fetchData();
   }, [email, reset]);
 
+
   const onSubmit = async (data) => {
+    const trainerEmail = trainer.email;
+    const trainerImage = trainer.profileImage;
+
     try {
-      await axiosPublic.patch(`/add-new-slot/${email}`, {
-        day: data.days.map((d) => d.value),
+      /* ───────── 1) TRY to add trainer to the class ───────── */
+      const addTrainerRes = await axiosPublic.patch(
+        `/insert-trainer-in-class/${data.classId.value}`,
+        { trainerEmail, trainerImage }
+      );
+
+      /* If backend returns success === false, throw for catch */
+      if (!addTrainerRes.data?.success) {
+        throw new Error(addTrainerRes.data?.message || 'Unable to add trainer');
+      }
+
+      /* Show success for adding trainer */
+      await Swal.fire('Added!', 'Trainer linked to class.', 'success');
+
+      /* ───────── 2) NOW add the slot itself ───────── */
+      await axiosPublic.patch(`/add-new-slot/${trainerEmail}`, {
         slotName: data.slotName,
         slotTime: data.slotTime,
         classId: data.classId.value,
@@ -67,11 +85,22 @@ const AddNewSlot = () => {
       });
 
       Swal.fire('Success', 'Slot added!', 'success');
-      reset(); // clear form
+      reset();                      // clear the form if needed
     } catch (err) {
-      Swal.fire('Error', 'Could not add slot.', err);
+      /* Error could be duplicate trainer or max‑5 message */
+      const msg =
+        err.response?.data?.message ||
+        err.message ||
+        'Something went wrong';
+
+      Swal.fire('Error', msg, 'error');
     }
   };
+
+
+
+
+
 
   if (loading) return <Loader />;
   if (!trainer) return <p className="text-red-500 p-6">Trainer not found.</p>;
@@ -105,7 +134,7 @@ const AddNewSlot = () => {
           <div>
             <label className="block mb-1 text-sm">Current Days</label>
             <input
-              value={trainer.availableDays.join(', ')}
+              value={trainer?.availableDays?.join(', ')}
               disabled
               className="w-full p-3 rounded bg-[#262626] text-gray-400"
             />
@@ -124,6 +153,7 @@ const AddNewSlot = () => {
         <div>
           <label className="block mb-1 text-sm">Select Days</label>
           <Controller
+            disabled
             name="days"
             control={control}
             rules={{ required: true }}
@@ -149,6 +179,15 @@ const AddNewSlot = () => {
             {...register('slotTime', { required: true })}
             className="w-full p-3 rounded bg-[#262626]"
             placeholder="e.g., 6am - 7am"
+          />
+        </div>
+
+        <div>
+          <label className="block mb-1 text-sm">Slot Day</label>
+          <input
+            {...register('slotDay', { required: true })}
+            className="w-full p-3 rounded bg-[#262626]"
+            placeholder="e.g., Friday"
           />
         </div>
 

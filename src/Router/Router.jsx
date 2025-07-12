@@ -95,7 +95,8 @@ export const router = createBrowserRouter([
 
             {
                 path: 'manage-slots',
-                Component: ManageSlot
+                Component: ManageSlot,
+                loader:()=>fetch('http://localhost:5000/admin-classes')
 
             },
 

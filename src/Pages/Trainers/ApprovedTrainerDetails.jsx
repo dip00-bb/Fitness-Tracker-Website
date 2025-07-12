@@ -65,10 +65,7 @@ const ApprovedTrainerDetails = () => {
               <p className="text-sm text-gray-400 mb-1">Available Days</p>
               <p className="font-semibold">{trainer?.availableDays?.join(', ')}</p>
             </div>
-            {/* <div className="sm:col-span-2">
-              <p className="text-sm text-gray-400 mb-1">Applied At</p>
-              <p className="font-semibold">{moment(trainer.appliedAt).format('MMMM Do YYYY, h:mm A')}</p>
-            </div> */}
+
           </div>
 
           {/* Skills */}
@@ -139,13 +136,15 @@ const ApprovedTrainerDetails = () => {
             Select any of the following available days to book a session with {trainer.fullName}.
           </p>
           <div className="flex flex-wrap gap-4">
-            {trainer.availableDays.map((day, i) => (
+            {trainer.slots.map((slot, i) => (
+
+
               <button
                 key={i}
-                onClick={() => navigate(`/book-trainer/${id}?day=${day}&available=${trainer.availableTime}`)}
-                className="bg-lime-600 hover:bg-lime-700 px-6 py-3 rounded-md font-semibold transition hover:scale-105 cursor-pointer"
+                onClick={() => navigate(`/book-trainer/${id}?day=${slot.day}&available=${slot.slotTime}`)}
+                className=" border-1 hover:bg-lime-700 px-4 py-2 rounded-md font-semibold transition hover:scale-105 cursor-pointer"
               >
-                {day}
+                {slot.slotName} :  {slot.day}
               </button>
             ))}
           </div>
