@@ -20,13 +20,13 @@ const TeamSection = () => {
     return (
         <section className="py-16 px-4 md:px-16 bg-[#0d0d0d] text-white">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-14">
-                Meet <span className="text-red-500">Our Trainers</span>
+                Meet <span className="text-lime-500">Our Trainers</span>
             </h2>
 
             {/* Loading & error states */}
             {isLoading && (
                 <div className="flex justify-center">
-                    <div className="animate-spin h-10 w-10 border-4 border-red-600 border-t-transparent rounded-full" />
+                    <div className="animate-spin h-10 w-10 border-4 border-lime-600 border-t-transparent rounded-full" />
                 </div>
             )}
             {isError && <p className="text-red-500 text-center">Failed to load team.</p>}
@@ -36,14 +36,14 @@ const TeamSection = () => {
                 {profiles.map(tr => (
                     <div
                         key={tr._id}
-                        className="bg-[#1a1a1a] px-4 py-4 rounded-xl shadow-lg hover:shadow-red-500/30 transition-all duration-300 flex flex-col"
+                        className="bg-[#1a1a1a] px-4 py-4 rounded-xl shadow-lg hover:scale-110 transition-all duration-300 flex flex-col"
                     >
                         {/* Photo */}
                         <div className='h-56'>
                             <img
                                 src={tr.profileImage}
                                 alt={tr.fullName}
-                                className="w-full h-full rounded-lg mb-6 border-2 border-red-600"
+                                className="w-full h-full rounded-lg mb-6"
                             />
                         </div>
 
@@ -60,7 +60,7 @@ const TeamSection = () => {
                             {tr.skills.slice(0, 4).map((skill, idx) => (
                                 <span
                                     key={idx}
-                                    className="bg-red-700 text-xs px-3 py-1 rounded-full font-medium hover:bg-red-600 transition"
+                                    className="bg-lime-700 text-xs px-3 py-1 rounded-full font-medium hover:bg-lime-600 transition"
                                 >
                                     {skill}
                                 </span>

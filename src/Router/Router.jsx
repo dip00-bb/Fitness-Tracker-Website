@@ -15,6 +15,7 @@ import AllClasses from "../Pages/Classes/AllClasses";
 import ManageTrainer from "../Pages/DashboardPages/Admin/ManageTrainer";
 import ManageSlot from "../Pages/DashboardPages/Trainer/ManageSlot";
 import AddNewSlot from "../Pages/DashboardPages/Trainer/AddNewSlot";
+import BookTrainer from "../Pages/Trainers/BookTrainer";
 
 
 export const router = createBrowserRouter([
@@ -46,12 +47,17 @@ export const router = createBrowserRouter([
                 Component: TrainerSection
             },
             {
-                path:'/trainer-details/:id',
-                Component:ApprovedTrainerDetails
+                path: '/trainer-details/:id',
+                Component: ApprovedTrainerDetails
             },
             {
-                path:'/all-classes',
+                path: '/all-classes',
                 Component: AllClasses
+            },
+            {
+                path: '/book-trainer/:id',
+                Component:BookTrainer
+
             }
         ]
     },
@@ -75,12 +81,12 @@ export const router = createBrowserRouter([
                 Component: TrainerDetails
             },
             {
-                path:'add-class',
-                Component:AddClass
+                path: 'add-class',
+                Component: AddClass
             },
             {
-                path:'all-trainers-list',
-                Component:ManageTrainer
+                path: 'all-trainers-list',
+                Component: ManageTrainer
             },
 
 
@@ -88,14 +94,14 @@ export const router = createBrowserRouter([
             // Trainer
 
             {
-                path:'manage-slots',
-                Component:ManageSlot
+                path: 'manage-slots',
+                Component: ManageSlot
 
             },
 
             {
-                path:'add-new-slot',
-                Component:AddNewSlot
+                path: 'add-new-slot',
+                Component: AddNewSlot
             }
 
 

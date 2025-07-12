@@ -5,17 +5,17 @@ const features = [
   {
     title: 'Personal Training',
     description: 'Get personalized workout plans crafted by expert trainers to meet your unique fitness goals.',
-    icon: <Dumbbell size={40} className="text-red-500" />,
+    icon: <Dumbbell size={40} className="text-green-700" />,
   },
   {
     title: 'Healthy Recipes',
     description: 'Access a curated library of high-protein, low-carb recipes to fuel your fitness journey.',
-    icon: <HeartPulse size={40} className="text-red-500" />,
+    icon: <HeartPulse size={40} className="text-green-700" />,
   },
   {
     title: 'Community Support',
     description: 'Join a thriving community of fitness enthusiasts for daily motivation and progress sharing.',
-    icon: <Users size={40} className="text-red-500" />,
+    icon: <Users size={40} className="text-green-700" />,
   },
 ];
 
@@ -23,7 +23,7 @@ const FeaturedSection = () => {
   return (
     <section className="px-4 py-20 bg-black text-white">
       <div className="max-w-6xl mx-auto text-center mb-12">
-        <h2 className="text-4xl md:text-6xl font-bold mb-4">Why <span className="text-red-500">Choose Us</span></h2>
+        <h2 className="text-4xl md:text-6xl font-bold mb-4">Why <span className="text-lime-500">Choose Us</span></h2>
         <p className="text-gray-400 text-lg md:text-xl">Explore our top features designed to elevate your fitness experience.</p>
       </div>
 

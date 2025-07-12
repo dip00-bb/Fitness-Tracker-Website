@@ -83,7 +83,7 @@ const Newsletter = () => {
                 {/* Left Content */}
                 <div className="md:w-1/2 mb-6 md:mb-0">
                     <h2 className="text-4xl md:text-6xl font-bold mb-4">
-                        Stay <span className="text-red-500">Updated</span>
+                        Stay <span className="text-lime-500">Updated</span>
                     </h2>
                     <p className="text-gray-300 text-lg md:text-xl">
                         Subscribe to our newsletter for the latest workouts, tips, and exclusive updates.
@@ -116,7 +116,7 @@ const Newsletter = () => {
                         />
                         <button
                             type="submit"
-                            className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 font-semibold uppercase text-xl tracking-wider transition rounded-none cursor-pointer"
+                            className="bg-lime-600 hover:bg-lime-700 text-white px-6 py-3 font-semibold uppercase text-xl tracking-wider transition rounded-none cursor-pointer"
                         >
                             Subscribe Now
                         </button>

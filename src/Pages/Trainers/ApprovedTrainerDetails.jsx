@@ -7,8 +7,8 @@ import Loader from '../../Utils/Loader';
 
 const ApprovedTrainerDetails = () => {
 
-  
-    
+
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -27,10 +27,10 @@ const ApprovedTrainerDetails = () => {
     <div className="min-h-screen bg-[#111] text-white py-12 px-4 md:px-16">
       {/* Header with CTA */}
       <div className="flex justify-between items-center mb-10 flex-col md:flex-row gap-6">
-        <h1 className="text-4xl font-bold text-red-500 uppercase">Trainer Details</h1>
+        <h1 className="text-4xl font-bold text-lime-500 uppercase">Trainer Details</h1>
         <button
           onClick={() => navigate('/beATrainer')}
-          className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-md text-lg font-semibold shadow-md transition-all duration-200 hover:scale-105"
+          className="bg-lime-600 hover:bg-lime-700 px-6 py-3 rounded-md text-lg font-semibold shadow-md transition-all duration-200 hover:scale-105 cursor-pointer"
         >
           Become a Trainer
         </button>
@@ -38,17 +38,17 @@ const ApprovedTrainerDetails = () => {
 
       <div className="grid lg:grid-cols-2 gap-10">
         {/* Trainer Info */}
-        <div className="bg-[#1a1a1a] p-8 rounded-md shadow-lg transition-all duration-300 hover:shadow-red-500/20">
+        <div className="bg-[#1a1a1a] p-8 rounded-md transition-all duration-300">
           <div className="flex flex-col md:flex-row gap-6 items-center mb-8">
             <img
               src={trainer.profileImage}
               alt={trainer.fullName}
-              className="w-40 h-40 rounded-md object-cover border-4 border-red-500 hover:scale-105 transition duration-300"
+              className="w-40 h-40 rounded-md object-cover border-1 border-lime-500 hover:scale-105 transition duration-300"
             />
             <div className="text-center md:text-left">
               <h2 className="text-3xl font-bold">{trainer.fullName}</h2>
               <p className="text-gray-400 text-sm">{trainer.email}</p>
-              <p className="mt-2 text-red-400 font-semibold">{trainer.experience}+ Years Experience</p>
+              <p className="mt-2 text-lime-400 font-semibold">{trainer.experience}+ Years Experience</p>
             </div>
           </div>
 
@@ -78,7 +78,7 @@ const ApprovedTrainerDetails = () => {
               {trainer.skills.map((skill, idx) => (
                 <span
                   key={idx}
-                  className="bg-red-700 hover:bg-red-600 px-4 py-2 rounded-md text-sm font-medium transition"
+                  className="bg-lime-600 hover:bg-lime-700 px-4 py-2 rounded-md text-sm font-medium transition"
                 >
                   {skill}
                 </span>
@@ -133,8 +133,8 @@ const ApprovedTrainerDetails = () => {
         </div>
 
         {/* Available Slots Section */}
-        <div className="bg-[#1f1f1f] p-8 rounded-md shadow-lg transition-all duration-300 hover:shadow-red-500/20 h-fit">
-          <h2 className="text-3xl font-bold mb-6 text-red-500">Available Slots</h2>
+        <div className="bg-[#1f1f1f] p-8 rounded-md shadow-lg transition-all duration-300 hover:shadow-lime-500/20 h-fit">
+          <h2 className="text-3xl font-bold mb-6 text-lime-500">Available Slots</h2>
           <p className="text-gray-400 mb-4">
             Select any of the following available days to book a session with {trainer.fullName}.
           </p>
@@ -142,8 +142,8 @@ const ApprovedTrainerDetails = () => {
             {trainer.availableDays.map((day, i) => (
               <button
                 key={i}
-                onClick={() => navigate(`/book-trainer/${id}?day=${day}`)}
-                className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-md font-semibold transition hover:scale-105 cursor-pointer"
+                onClick={() => navigate(`/book-trainer/${id}?day=${day}&available=${trainer.availableTime}`)}
+                className="bg-lime-600 hover:bg-lime-700 px-6 py-3 rounded-md font-semibold transition hover:scale-105 cursor-pointer"
               >
                 {day}
               </button>

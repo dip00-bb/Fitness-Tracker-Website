@@ -8,7 +8,7 @@ const About = () => {
                 {/* Left Content - Text */}
                 <div>
                     <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                        <span className="text-red-500">About</span> Our Mission
+                        <span className="text-lime-500">About</span> Our Mission
                     </h2>
                     <p className="text-gray-300 text-lg md:text-xl mb-4">
                         We are not just a fitness platform — we're a movement. Our goal is to empower individuals of all levels to take control of their physical and mental well-being.

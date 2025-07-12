@@ -39,14 +39,14 @@ const TestimonialCarousel = () => {
         {/* Left Section */}
         <div className="md:w-1/2">
           <h2 className="text-4xl font-bold mb-6">
-            Don’t just take our <span className="text-red-500">word</span> for it
+            Don’t just take our <span className="text-lime-500">word</span> for it
           </h2>
           <p className="text-gray-400 mb-8 text-lg">
             Witness it firsthand, directly from our lovely members.
           </p>
           <a
             href="/all-reviews"
-            className="uppercase tracking-wide text-red-500 hover:underline font-semibold"
+            className="uppercase tracking-wide text-lime-500 hover:underline font-semibold"
           >
             See all reviews
           </a>
@@ -71,7 +71,7 @@ const TestimonialCarousel = () => {
                     <img
                       src={review.image}
                       alt={review.name}
-                      className="w-14 h-14 object-cover rounded-full border-2 border-red-500"
+                      className="w-14 h-14 object-cover rounded-full border-2 border-lime-500"
                     />
                     <div>
                       <h4 className="text-xl font-semibold">{review.name}</h4>
