@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
-import { FaHome, FaLocationArrow, FaMedal, FaPlusCircle, FaCalendarPlus, FaClipboardList, FaUserCircle, FaRegClock, FaUserCheck } from 'react-icons/fa';
+import { FaHome, FaLocationArrow, FaMedal, FaPlusCircle, FaCalendarPlus, FaClipboardList, FaUserTie, FaAddressCard,  } from 'react-icons/fa';
 import { GiMuscleUp } from 'react-icons/gi';
 import { MdPending } from 'react-icons/md';
 
@@ -111,22 +111,23 @@ const DashboardLayout = () => {
 
                     {/* Member */}
                     <li>
-                        <NavLink to="/dashboard/booked-trainer">
-                            <FaUserCheck className="inline mr-2" /> Booked Trainer
+                        <NavLink to="/dashboard/activity-log">
+                            <FaClipboardList className="inline mr-2" /> Activity Log
                         </NavLink>
                     </li>
 
                     <li>
                         <NavLink to="/dashboard/profile">
-                            <FaUserCircle className="inline mr-2" /> Profile
+                            <FaAddressCard className="inline mr-2" /> Profile Page
                         </NavLink>
                     </li>
 
                     <li>
-                        <NavLink to="/dashboard/activity-log">
-                            <FaRegClock className="inline mr-2" /> Activity Log
+                        <NavLink to="/dashboard/booked-trainer">
+                            <FaUserTie className="inline mr-2" /> Booked Trainer
                         </NavLink>
                     </li>
+
                     {/* Member */}
 
                 </ul>

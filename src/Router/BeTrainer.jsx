@@ -82,7 +82,7 @@ const BeTrainerForm = () => {
             email: userEmail,
             fullName: fullName,
             availableDays: formData.availableDays.map((d) => d.value),
-            availableDayPart:formData.availableDayPart.map((d)=>d.value)
+            // availableDayPart:formData.availableDayPart.map((d)=>d.value)
         };
 
         try {

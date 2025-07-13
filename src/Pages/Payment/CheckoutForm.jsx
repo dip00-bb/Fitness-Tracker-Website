@@ -1,10 +1,10 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import useAxiosSecure from '../Hooks/useAxiosSecure';
-import useAuth from '../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import axiosPublic from '../../Hooks/useAxiosPublic';
+import { AuthContext } from '../../Context/AuthContext/AuthContext';
 
 
 const CheckoutFrom = () => {
@@ -12,8 +12,7 @@ const CheckoutFrom = () => {
     const stripe = useStripe();
     const elements = useElements();
     const { parcel_ID } = useParams();
-    const { user } = useAuth()
-    const axiosSecure = useAxiosSecure()
+    const { user } = use(AuthContext)
     const navigate = useNavigate()
 
     const [error, setError] = useState('')
@@ -21,7 +20,7 @@ const CheckoutFrom = () => {
     const { isPending, data: parcelInfo = {} } = useQuery({
         queryKey: ['parcels', parcel_ID],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/parcels/${parcel_ID}`);
+            const res = await axiosPublic.get(`/parcels/${parcel_ID}`);
             return res.data
         }
 
@@ -62,7 +61,7 @@ const CheckoutFrom = () => {
             console.log(paymentMethod)
             // create payment intent 2
 
-            const res = await axiosSecure.post('/create-payment-intent', {
+            const res = await axiosPublic.post('/create-payment-intent', {
                 amount: amount * 100,
                 parcel_ID
             })
@@ -83,7 +82,7 @@ const CheckoutFrom = () => {
             } else {
                 setError('');
                 if (result.paymentIntent.status === 'succeeded') {
-                    const paymentResponse = await axiosSecure.post('/pay', {
+                    const paymentResponse = await axiosPublic.post('/pay', {
                         parcelId: parcel_ID,
                         userEmail: user.email,
                         amount: amount,

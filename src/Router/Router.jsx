@@ -16,6 +16,8 @@ import ManageTrainer from "../Pages/DashboardPages/Admin/ManageTrainer";
 import ManageSlot from "../Pages/DashboardPages/Trainer/ManageSlot";
 import AddNewSlot from "../Pages/DashboardPages/Trainer/AddNewSlot";
 import BookTrainer from "../Pages/Trainers/BookTrainer";
+import Payments from "../Pages/Payment/Payments";
+import Profile from "../Pages/DashboardPages/Members/Profile";
 
 
 export const router = createBrowserRouter([
@@ -58,7 +60,11 @@ export const router = createBrowserRouter([
                 path: '/book-trainer/:id',
                 Component:BookTrainer
 
-            }
+            },
+            {
+                path:'/payment-page',
+                Component:Payments
+            },
         ]
     },
     {
@@ -103,9 +109,19 @@ export const router = createBrowserRouter([
             {
                 path: 'add-new-slot',
                 Component: AddNewSlot
+            },
+
+            // member 
+
+            {
+                path:'activity-log',
+                Component:<p>j</p>
+            },
+
+            {
+                path:'profile',
+                Component:Profile
             }
-
-
 
         ]
     }
