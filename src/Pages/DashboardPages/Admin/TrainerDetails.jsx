@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import moment from 'moment';
 import Loader from '../../../Utils/Loader';
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 const TrainerDetails = () => {
     
     const { id } = useParams();
-
+    const navigate=useNavigate()
 
 
     // Add state above return
@@ -191,8 +191,10 @@ const TrainerDetails = () => {
                                 onClick={async () => {
                                     try {
                                         const res = await axiosPublic.post(`/reject-trainer/${id}`, {
-                                            feedback,
+                                            feedback,email:trainer.email
                                         });
+
+
 
                                         if (res.data.success) {
                                             Swal.fire({
@@ -201,7 +203,7 @@ const TrainerDetails = () => {
                                                 text: 'The trainer has been successfully rejected.',
                                             });
                                             setIsRejectModalOpen(false);
-                                            // Optional: Navigate or refetch here
+                                            navigate('/dashboard/pending-trainers')
                                         } else {
                                             Swal.fire({
                                                 icon: 'error',
@@ -217,7 +219,7 @@ const TrainerDetails = () => {
                                         });
                                     }
                                 }}
-                                className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded"
+                                className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded cursor-pointer"
                             >
                                 Submit Rejection
                             </button>
