@@ -19,6 +19,7 @@ import BookTrainer from "../Pages/Trainers/BookTrainer";
 import Payments from "../Pages/Payment/Payments";
 import Profile from "../Pages/DashboardPages/Members/Profile";
 import ActivityLog from "../Pages/DashboardPages/Members/ActivityLog";
+import AddForum from "../Pages/DashboardPages/Admin/AddForum";
 
 
 export const router = createBrowserRouter([
@@ -94,6 +95,11 @@ export const router = createBrowserRouter([
             {
                 path: 'all-trainers-list',
                 Component: ManageTrainer
+            },
+
+            {
+                path:'add-forums',
+                Component:AddForum
             },
 
 

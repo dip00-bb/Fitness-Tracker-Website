@@ -98,7 +98,7 @@ const DashboardLayout = () => {
                     </li>
 
                     <li>
-                        <NavLink to="/dashboard/add-forum">
+                        <NavLink to="/dashboard/add-forums">
                             <FaPlusCircle className="inline mr-2" /> Add New Forum
                         </NavLink>
                     </li>
