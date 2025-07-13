@@ -90,17 +90,23 @@ const BeTrainerForm = () => {
             const data = res.data;
 
             if (data.success) {
+
+                await axiosPublic.patch(`/add-pending-trainer-status/${userEmail}`);
+
                 Swal.fire({
                     icon: 'success',
                     title: 'Applied!',
                     text: 'Your trainer application is submitted.',
                 });
+
+
             } else if (data.message === 'Trainer already applied') {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Already Applied!',
                     text: 'You have already submitted your application.',
                 });
+
             } else {
                 Swal.fire({
                     icon: 'error',
@@ -203,11 +209,11 @@ const BeTrainerForm = () => {
 
 
                 <div>
-                    <label className="block mb-1">Available Time (hour) </label>
+                    <label className="block mb-1">Available Time </label>
                     <input
                         type="text"
                         className="w-full p-3 rounded bg-[#2a2a2a] text-white"
-                        placeholder='Ex: 1'
+                        placeholder='Ex: 4pm - 6pm'
                         value={formData.availableTime}
                         onChange={(e) => setFormData({ ...formData, availableTime: e.target.value })}
                     />

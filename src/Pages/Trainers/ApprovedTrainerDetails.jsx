@@ -137,22 +137,30 @@ const ApprovedTrainerDetails = () => {
         {/* Available Slots Section */}
         <div className="bg-[#1f1f1f] p-8 rounded-md shadow-lg transition-all duration-300 hover:shadow-lime-500/20 h-fit">
           <h2 className="text-3xl font-bold mb-6 text-lime-500">Available Slots</h2>
-          <p className="text-gray-400 mb-4">
-            Select any of the following available days to book a session with {trainer.fullName}.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            {trainer.slots.map((slot, i) => (
 
 
-              <button
-                key={i}
-                onClick={() => navigate(`/book-trainer/${id}?day=${slot.day}&available=${slot.slotTime}`)}
-                className=" border-1 hover:bg-lime-700 px-4 py-2 rounded-md font-semibold transition hover:scale-105 cursor-pointer"
-              >
-                {slot.slotName} :  {slot.day}
-              </button>
-            ))}
-          </div>
+          {trainer?.slots ?
+            <div>
+              <p className="text-gray-400 mb-4">
+                Select any of the following available days to book a session with {trainer.fullName}.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                {trainer?.slots.map((slot, i) => (
+
+
+                  <button
+                    key={i}
+                    onClick={() => navigate(`/book-trainer/${id}?day=${slot.day}&available=${slot.slotTime}`)}
+                    className=" border-1 hover:bg-lime-700 px-4 py-2 rounded-md font-semibold transition hover:scale-105 cursor-pointer"
+                  >
+                    {slot.slotName} :  {slot.day}
+                  </button>
+                ))}
+              </div>
+            </div> : <p>This trainer not added any slots</p>
+          }
+
+
         </div>
       </div>
     </div>

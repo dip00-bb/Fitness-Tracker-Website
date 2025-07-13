@@ -18,6 +18,7 @@ import AddNewSlot from "../Pages/DashboardPages/Trainer/AddNewSlot";
 import BookTrainer from "../Pages/Trainers/BookTrainer";
 import Payments from "../Pages/Payment/Payments";
 import Profile from "../Pages/DashboardPages/Members/Profile";
+import ActivityLog from "../Pages/DashboardPages/Members/ActivityLog";
 
 
 export const router = createBrowserRouter([
@@ -115,7 +116,7 @@ export const router = createBrowserRouter([
 
             {
                 path:'activity-log',
-                Component:<p>j</p>
+                Component:ActivityLog
             },
 
             {
