@@ -150,10 +150,10 @@ const ApprovedTrainerDetails = () => {
 
                   <button
                     key={i}
-                    onClick={() => navigate(`/book-trainer/${id}?day=${slot.day}&available=${slot.slotTime}`)}
+                    onClick={() => navigate(`/book-trainer/${id}?day=${slot.slotDay}&available=${slot.slotTime}`)}
                     className=" border-1 hover:bg-lime-700 px-4 py-2 rounded-md font-semibold transition hover:scale-105 cursor-pointer"
                   >
-                    {slot.slotName} :  {slot.day}
+                    {slot.slotName} :  {slot.slotDay}
                   </button>
                 ))}
               </div>

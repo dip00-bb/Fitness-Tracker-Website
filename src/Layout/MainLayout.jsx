@@ -9,10 +9,13 @@ const MainLayout = () => {
             <header>
                 <Navbar />
             </header>
-            <Outlet />
+
+            <main className='max-w-7xl mx-auto'>
+                <Outlet />
+            </main>
 
             <footer>
-                <Footer/>
+                <Footer />
             </footer>
         </div>
     );

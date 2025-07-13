@@ -1,21 +1,19 @@
 // src/pages/dashboard/ManageSlot.jsx
 import React, { useContext } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Context/AuthContext/AuthContext';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
 import Loader from '../../../Utils/Loader';
-import { useLoaderData } from 'react-router';
+import useTitle from '../../../Hooks/useTitle';
 
 const ManageSlot = () => {
+    useTitle('Dashboard | Manage Slot');
     const { user } = useContext(AuthContext);
     const email = user?.email;
+    const queryClient = useQueryClient();
 
-    const classes=useLoaderData();
-
-    console.log("classes",classes)
-
-
-    /* GET all slots for this trainer */
+    /* ─────────── GET slots for this trainer ─────────── */
     const {
         data: slotData,
         isLoading,
@@ -29,14 +27,41 @@ const ManageSlot = () => {
         }
     });
 
-    if (!email) return <Loader />;
-    if (isLoading) return <Loader />;
+    /* ─────────── DELETE slot mutation ─────────── */
+    const deleteMutation = useMutation({
+        mutationFn: (slotId) =>
+            axiosPublic.delete(`/delete-slot/${slotId}`, {
+                data: { email } // body payload
+            }),
+        onSuccess: () => {
+            Swal.fire('Deleted', 'Slot removed.', 'success');
+            queryClient.invalidateQueries(['trainerSlots', email]);
+        },
+        onError: (err) => {
+            const msg = err.response?.data?.message || 'Failed to delete';
+            Swal.fire('Error', msg, 'error');
+        }
+    });
+
+    /* confirm + call mutation */
+    const handleDelete = (slotId) => {
+        Swal.fire({
+            title: 'Delete this slot?',
+            text: 'This action cannot be undone.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Delete'
+        }).then((res) => {
+            if (res.isConfirmed) deleteMutation.mutate(slotId);
+        });
+    };
+
+    /* ─────────── UI states ─────────── */
+    if (!email || isLoading) return <Loader />;
     if (isError) return <Loader />;
 
-
     const { fullName, slots } = slotData;
-
-    console.log(slots)
 
     return (
         <div className="p-6 text-white">
@@ -63,7 +88,10 @@ const ManageSlot = () => {
                                 <td className="py-3 px-4">{slot.classId}</td>
                                 <td className="py-3 px-4">{slot.extraInfo || '-'}</td>
                                 <td className="py-3 px-4">
-                                    <button className="bg-lime-600 hover:bg-lime-700 px-4 py-2 rounded text-sm">
+                                    <button
+                                        onClick={() => handleDelete(slot._id)}
+                                        className="bg-lime-600 hover:bg-lime-700 px-4 py-2 rounded text-sm cursor-pointer"
+                                    >
                                         Delete
                                     </button>
                                 </td>

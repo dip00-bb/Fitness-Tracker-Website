@@ -58,7 +58,6 @@ const CheckoutFrom = () => {
             setError(error.message)
         } else {
             setError('')
-            console.log(paymentMethod)
             // create payment intent 2
 
             const res = await axiosPublic.post('/create-payment-intent', {

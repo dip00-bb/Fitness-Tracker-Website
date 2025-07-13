@@ -39,7 +39,7 @@ const plans = [
 const MembershipTable = ({day,time,id}) => {
 
   const [plan, setPlan] = useState('');
-  console.log("trio",plan,day,time,id)
+
 
   return (
     <section className="bg-[#0d0d0d] text-white py-16 px-4 md:px-16">

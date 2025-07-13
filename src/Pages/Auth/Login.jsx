@@ -6,6 +6,7 @@ import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import { useForm } from "react-hook-form";
 import { loginSuccessSwal, } from "../../Utils/swal";
 import axiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 
 const Login = () => {
@@ -29,7 +30,11 @@ const Login = () => {
                 navigate(`${location.state ? location.state : '/'}`);
             })
             .catch((error) => {
-                console.log(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error,
+                });
             });
     }
 
@@ -61,7 +66,11 @@ const Login = () => {
 
 
             }).catch(errors => {
-                console.log(errors)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: errors,
+                });
             })
     }
 

@@ -18,8 +18,6 @@ const AddForum = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(title,tags,content,imageURL)
-
     if (!title || !content) {
       return Swal.fire('Required', 'Title and content are required.', 'warning');
     }

@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Context/AuthContext/AuthContext';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
 import Loader from '../../../Utils/Loader';
+import useTitle from '../../../Hooks/useTitle';
 
 
 
@@ -19,7 +20,19 @@ const dayOptions = [
   { value: 'Saturday', label: 'Saturday' }
 ];
 
+const slotNameOption = [
+  { value: 'Morning', label: 'Morning' },
+  { value: 'Evening', label: 'Evening' },
+  { value: 'Night', label: 'Night' },
+]
+
+
+
 const AddNewSlot = () => {
+
+
+  useTitle("Dashboard | Add New Slot")
+
   const { user } = useContext(AuthContext);
   const email = user?.email;
 
@@ -60,13 +73,13 @@ const AddNewSlot = () => {
   const onSubmit = async (data) => {
     const trainerEmail = trainer.email;
     const trainerImage = trainer.profileImage;
-    const trainerID=trainer._id;
+    const trainerID = trainer._id;
 
     try {
       /* ───────── 1) TRY to add trainer to the class ───────── */
       const addTrainerRes = await axiosPublic.patch(
         `/insert-trainer-in-class/${data.classId.value}`,
-        { trainerEmail, trainerImage,trainerID }
+        { trainerEmail, trainerImage, trainerID }
       );
 
       /* If backend returns success === false, throw for catch */
@@ -79,14 +92,17 @@ const AddNewSlot = () => {
 
       /* ───────── 2) NOW add the slot itself ───────── */
       await axiosPublic.patch(`/add-new-slot/${trainerEmail}`, {
-        slotName: data.slotName,
-        slotTime: data.slotTime,
+        slotName: data.slotName.value,
+        slotDay: data.slotDay.value,
+        slotTime:data.slotTime,
         classId: data.classId.value,
+        trainerID,
+        trainerEmail,
         extraInfo: data.extraInfo || ''
       });
 
       Swal.fire('Success', 'Slot added!', 'success');
-      reset();                      
+      reset();
     } catch (err) {
       /* Error could be duplicate trainer or max‑5 message */
       const msg =
@@ -150,7 +166,6 @@ const AddNewSlot = () => {
           </div>
         </div>
 
-        {/* Days (multi‑select) */}
         <div>
           <label className="block mb-1 text-sm">Select Days</label>
           <Controller
@@ -164,13 +179,20 @@ const AddNewSlot = () => {
           />
         </div>
 
-        {/* Slot details */}
         <div>
           <label className="block mb-1 text-sm">Slot Name</label>
-          <input
-            {...register('slotName', { required: true })}
-            className="w-full p-3 rounded bg-[#262626]"
-            placeholder="e.g., Morning Slot"
+          <Controller
+            name="slotName"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Select
+                {...field}
+                options={slotNameOption}
+                placeholder="Select a Part..."
+                className="text-black"
+              />
+            )}
           />
         </div>
 
@@ -185,10 +207,18 @@ const AddNewSlot = () => {
 
         <div>
           <label className="block mb-1 text-sm">Slot Day</label>
-          <input
-            {...register('slotDay', { required: true })}
-            className="w-full p-3 rounded bg-[#262626]"
-            placeholder="e.g., Friday"
+          <Controller
+            name="slotDay"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <Select
+                {...field}
+                options={dayOptions}
+                placeholder="Select a day…"
+                className="text-black"
+              />
+            )}
           />
         </div>
 
@@ -217,7 +247,7 @@ const AddNewSlot = () => {
         {/* Submit */}
         <button
           type="submit"
-          className="w-full bg-lime-600 hover:bg-lime-700 py-3 rounded font-semibold transition"
+          className="w-full bg-lime-600 hover:bg-lime-700 py-3 rounded font-semibold transition cursor-pointer"
         >
           Add Slot
         </button>

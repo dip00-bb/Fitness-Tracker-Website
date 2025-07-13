@@ -66,13 +66,8 @@ const BeTrainerForm = () => {
 
     const handleDaysChange = (selectedOptions) => {
         setFormData((prev) => ({ ...prev, availableDays: selectedOptions }));
-        // console.log(formData.availableDays)
-    };
 
-    // const handleDayPartChange = (selectedOptions) => {
-    //     setFormData((prev) =>({ ...prev, availableDayPart: selectedOptions }));
-    //     console.log(formData.availableDayPart)
-    // };
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();

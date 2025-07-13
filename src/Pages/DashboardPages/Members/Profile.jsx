@@ -7,7 +7,6 @@ import axiosPublic from '../../../Hooks/useAxiosPublic';
 const Profile = () => {
     const { user, updateUser, setUser } = useContext(AuthContext);
 
-    console.log(user)
 
     // local form state
     const [displayName, setDisplayName] = useState(user?.displayName || '');
