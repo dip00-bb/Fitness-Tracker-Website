@@ -20,6 +20,9 @@ const ApprovedTrainerDetails = () => {
     },
   });
 
+
+  
+
   if (isLoading) return <Loader />;
   if (isError) return <div className="text-red-500 p-6">Failed to load trainer info.</div>;
 
