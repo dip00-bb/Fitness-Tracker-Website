@@ -21,6 +21,10 @@ import Profile from "../Pages/DashboardPages/Members/Profile";
 import ActivityLog from "../Pages/DashboardPages/Members/ActivityLog";
 import AddForum from "../Pages/DashboardPages/Admin/AddForum";
 import Forums from "../Pages/Fourms/Fourms";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Forbidden from "../Pages/Forbidden/Forbidden";
+import AdminRoute from "../PrivateRoute/AdminRoute";
+import TrainerRoute from "../PrivateRoute/TrainerRoute";
 
 
 export const router = createBrowserRouter([
@@ -44,7 +48,7 @@ export const router = createBrowserRouter([
 
             {
                 path: '/beATrainer',
-                Component: BeTrainerForm
+                element: <PrivateRoute><BeTrainerForm /></PrivateRoute>
             },
 
             {
@@ -61,51 +65,54 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/book-trainer/:id',
-                Component:BookTrainer
+                element: <PrivateRoute> <BookTrainer /> </PrivateRoute>
 
             },
             {
-                path:'/payment-page',
-                Component:Payments
+                path: '/payment-page',
+                element: <PrivateRoute> <Payments /> </PrivateRoute>
             },
 
             {
-                path:'/posts',
-                Component:Forums
+                path: '/posts',
+                Component: Forums
             }
         ]
     },
     {
         path: '/dashboard',
-        Component: DashboardLayout,
+        element: <PrivateRoute> <DashboardLayout /></PrivateRoute>,
         children: [
+
+
+
 
             // admin 
 
             {
                 path: 'all-newsletters',
-                Component: NewsLetterSubscriber
+                element: <AdminRoute> <NewsLetterSubscriber /> </AdminRoute>
             },
             {
                 path: 'pending-trainers',
-                Component: AllPendingTrainer
+                element: <AdminRoute> <AllPendingTrainer /> </AdminRoute>
             },
             {
                 path: 'pending-trainers/trainers-details/:id',
-                Component: TrainerDetails
+                element: <AdminRoute> <TrainerDetails /> </AdminRoute>
             },
             {
                 path: 'add-class',
-                Component: AddClass
+                element: <AdminRoute> <AddClass /> </AdminRoute>
             },
             {
                 path: 'all-trainers-list',
-                Component: ManageTrainer
+                element: <AdminRoute> <ManageTrainer /> </AdminRoute>
             },
 
             {
-                path:'add-forums',
-                Component:AddForum
+                path: 'add-forums',
+                Component: AddForum
             },
 
 
@@ -114,28 +121,35 @@ export const router = createBrowserRouter([
 
             {
                 path: 'manage-slots',
-                Component: ManageSlot,
-                loader:()=>fetch('http://localhost:5000/admin-classes')
+                element: <TrainerRoute> <ManageSlot /> </TrainerRoute>,
+                loader: () => fetch('http://localhost:5000/admin-classes')
 
             },
 
             {
                 path: 'add-new-slot',
-                Component: AddNewSlot
+                element: <TrainerRoute> <AddNewSlot /> </TrainerRoute>,
             },
 
             // member 
 
             {
-                path:'activity-log',
-                Component:ActivityLog
+                path: 'activity-log',
+                Component: ActivityLog
             },
 
             {
-                path:'profile',
-                Component:Profile
-            }
+                path: 'profile',
+                Component: Profile
+            },
 
+            
+            // forbidden
+
+            {
+                path: 'forbidden',
+                Component: Forbidden
+            },
         ]
     }
 

@@ -4,10 +4,11 @@ import { useQuery } from '@tanstack/react-query';
 // import moment from 'moment';
 import axiosPublic from '../../Hooks/useAxiosPublic';
 import Loader from '../../Utils/Loader';
+import useTitle from '../../Hooks/useTitle';
 
 const ApprovedTrainerDetails = () => {
 
-
+  useTitle("Trainer Details")
 
   const { id } = useParams();
   const navigate = useNavigate();

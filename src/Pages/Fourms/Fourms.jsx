@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa6';
 import axiosPublic from '../../Hooks/useAxiosPublic';
 import Loader from '../../Utils/Loader';
+import useTitle from '../../Hooks/useTitle';
 
 const ForumCard = ({ post, onVote }) => (
   <div className="bg-[#1a1a1a] rounded-lg shadow-md p-6 space-y-4">
@@ -59,6 +60,10 @@ const ForumCard = ({ post, onVote }) => (
 );
 
 const Forums = () => {
+
+
+  useTitle("Posts")
+
   const [page, setPage] = useState(1);
   const queryClient = useQueryClient();
 

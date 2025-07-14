@@ -3,8 +3,12 @@ import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
+import useTitle from '../../../Hooks/useTitle';
 
 const AddClass = () => {
+
+  useTitle("Dashboard | Add Class")
+
   const { register, handleSubmit, reset } = useForm();
   const queryClient = useQueryClient();
 
@@ -39,7 +43,7 @@ const AddClass = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="bg-[#1a1a1a] w-full max-w-lg p-8 rounded-lg shadow-lg space-y-6"
       >
-        <h2 className="text-3xl font-bold text-center mb-4 text-red-500">
+        <h2 className="text-3xl font-bold text-center mb-4 text-green-500">
           Add New Class
         </h2>
 
@@ -50,7 +54,7 @@ const AddClass = () => {
             {...register('name', { required: true })}
             className="w-full p-3 rounded bg-[#262626] focus:outline-none"
             placeholder="e.g., Yoga Basics"
-            required
+            required 
           />
         </div>
 
@@ -92,7 +96,7 @@ const AddClass = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full bg-red-600 hover:bg-red-700 py-3 rounded font-semibold transition cursor-pointer"
+          className="w-full bg-green-600 hover:bg-green-700 py-3 rounded font-semibold transition cursor-pointer"
         >
           {isLoading ? 'Adding…' : 'Add Class'}
         </button>

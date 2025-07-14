@@ -3,8 +3,12 @@ import { useQuery } from '@tanstack/react-query';
 import Loader from '../../../Utils/Loader';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
 import { Link } from 'react-router';
+import useTitle from '../../../Hooks/useTitle';
 
 const AllPendingTrainer = () => {
+
+
+    useTitle("Dashboard | Applied Trainer")
 
     const { data: trainers = [], isLoading, isError } = useQuery({
         queryKey: ['pendingTrainers'],

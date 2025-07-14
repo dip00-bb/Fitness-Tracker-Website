@@ -2,9 +2,14 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
 import Loader from '../../../Utils/Loader';
+import useTitle from '../../../Hooks/useTitle';
 
 
 const NewsLetterSubscriber = () => {
+
+
+    useTitle("Dashboard | Newsletters")
+
     const { data: subscribers = [], isLoading, isError } = useQuery({
         queryKey: ['newsletter-subscribers'],
         queryFn: async () => {

@@ -5,9 +5,12 @@ import moment from 'moment';
 import Loader from '../../../Utils/Loader';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import useTitle from '../../../Hooks/useTitle';
 
 const TrainerDetails = () => {
     
+    useTitle("Dashboard | Pending Trainer Details")
+
     const { id } = useParams();
     const navigate=useNavigate()
 

@@ -4,9 +4,12 @@ import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
 import Loader from '../../../Utils/Loader';
+import useTitle from '../../../Hooks/useTitle';
 
 
 const ManageTrainer = () => {
+
+  useTitle("Dashboard | Manage Trainer")
   /* ────────────────── Fetch with TanStack Query ────────────────── */
   const {
     data: trainers = [],

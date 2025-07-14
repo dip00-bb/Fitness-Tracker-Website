@@ -4,9 +4,13 @@ import { Link } from 'react-router';
 import { FaFacebookF, FaInstagram, FaXTwitter } from 'react-icons/fa6';
 import Loader from '../../Utils/Loader';
 import axiosPublic from '../../Hooks/useAxiosPublic';
+import useTitle from '../../Hooks/useTitle';
 
 
 const TrainerSection = () => {
+
+    useTitle("All Trainers")
+
     const { data: trainers = [], isLoading, isError } = useQuery({
         queryKey: ['approvedTrainers'],
         queryFn: async () => {

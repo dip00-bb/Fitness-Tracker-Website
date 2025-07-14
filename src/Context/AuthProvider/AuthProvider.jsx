@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { auth } from '../../Firebase/firebase.config';
 import { AuthContext } from '../AuthContext/AuthContext';
+import axiosPublic from '../../Hooks/useAxiosPublic';
 
 
 
@@ -9,13 +10,38 @@ import { AuthContext } from '../AuthContext/AuthContext';
 
 const AuthProvider = ({ children }) => {
 
-
-
+    const [userRole, setUserRole] = useState(null)
     const provider = new GoogleAuthProvider()
     const [isLoading, setLoading] = useState(true);
 
-
     const [user, setUser] = useState(null)
+
+
+    const [roleLoading, setRoleLoading] = useState(true); 
+
+    useEffect(() => {
+        const fetchRole = async () => {
+            if (user?.email) {
+                setRoleLoading(true); 
+                try {
+                    const res = await axiosPublic.get(`/user-role/${user.email}`);
+                    setUserRole(res.data.role);
+                } catch (err) {
+                    console.error('Error fetching user role:', err);
+                } finally {
+                    setRoleLoading(false); 
+                }
+            } else {
+                setRoleLoading(false); 
+            }
+        };
+
+        fetchRole();
+    }, [user]);
+
+
+
+
 
 
     const googleLogIn = () => {
@@ -53,6 +79,8 @@ const AuthProvider = ({ children }) => {
     const authInformation = {
         user,
         isLoading,
+        roleLoading,
+        userRole,
         googleLogIn,
         setUser,
         signout,
