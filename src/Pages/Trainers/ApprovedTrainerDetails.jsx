@@ -70,10 +70,10 @@ const ApprovedTrainerDetails = () => {
               <p className="font-semibold">{trainer?.availableDays?.join(', ')}</p>
             </div>
 
-            <div className="sm:col-span-2">
+            {/* <div className="sm:col-span-2">
               <p className="text-sm text-gray-400 mb-1">Available Days</p>
               <p className="font-semibold">{trainer?.availableDays?.join(', ')}</p>
-            </div>
+            </div> */}
 
           </div>
 
@@ -154,7 +154,7 @@ const ApprovedTrainerDetails = () => {
 
                   <button
                     key={i}
-                    onClick={() => navigate(`/book-trainer/${id}?day=${slot.slotDay}&available=${slot.slotTime}`)}
+                    onClick={() => navigate(`/book-trainer/${id}?slotId=${slot._id}`)}
                     className=" border-1 hover:bg-lime-700 px-4 py-2 rounded-md font-semibold transition hover:scale-105 cursor-pointer"
                   >
                     {slot.slotName} :  {slot.slotDay}

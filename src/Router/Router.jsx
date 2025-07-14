@@ -25,6 +25,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Forbidden from "../Pages/Forbidden/Forbidden";
 import AdminRoute from "../PrivateRoute/AdminRoute";
 import TrainerRoute from "../PrivateRoute/TrainerRoute";
+import MemberRoute from "../PrivateRoute/MemberRoute";
 
 
 export const router = createBrowserRouter([
@@ -70,7 +71,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/payment-page',
-                element: <PrivateRoute> <Payments /> </PrivateRoute>
+                element: <PrivateRoute><Payments /></PrivateRoute>
             },
 
             {
@@ -135,15 +136,15 @@ export const router = createBrowserRouter([
 
             {
                 path: 'activity-log',
-                Component: ActivityLog
+                element: <MemberRoute> <ActivityLog /> </MemberRoute>,
             },
 
             {
                 path: 'profile',
-                Component: Profile
+                element: <MemberRoute> <Profile /> </MemberRoute>,
             },
 
-            
+
             // forbidden
 
             {

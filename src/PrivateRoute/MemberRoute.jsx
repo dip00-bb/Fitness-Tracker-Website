@@ -3,7 +3,7 @@ import { AuthContext } from '../Context/AuthContext/AuthContext';
 import Loader from '../Utils/Loader';
 import { Navigate } from 'react-router';
 
-const TrainerRoute = ({children}) => {
+const MemberRoute = ({children}) => {
 
     const {user,userRole,roleLoading}=use(AuthContext)
 
@@ -11,7 +11,7 @@ const TrainerRoute = ({children}) => {
         <Loader/>
     }
 
-    if(!user || userRole !== "trainer"){
+    if(!user || userRole !== "member"){
         return <Navigate to='/dashboard/forbidden'>
 
         </Navigate>
@@ -20,4 +20,4 @@ const TrainerRoute = ({children}) => {
     return children
 };
 
-export default TrainerRoute;
+export default MemberRoute;

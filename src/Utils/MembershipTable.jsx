@@ -1,12 +1,12 @@
 // src/components/MembershipPlans.jsx
-import React, { useState } from 'react';
+import React from 'react';
 import { FaCheck } from 'react-icons/fa6';
 import { Link } from 'react-router';
 
 const plans = [
   {
     name: 'Basic Membership',
-    price: '$10 / mo',
+    price: 10,
     facilities: [
       'Access to gym facilities during regular hours',
       'Use of cardio & strength equipment',
@@ -15,7 +15,7 @@ const plans = [
   },
   {
     name: 'Standard Membership',
-    price: '$50 / mo',
+    price: 50,
     facilities: [
       'All benefits of Basic',
       'Group fitness classes (yoga, spinning, Zumba)',
@@ -24,7 +24,7 @@ const plans = [
   },
   {
     name: 'Premium Membership',
-    price: '$100 / mo',
+    price: 100,
     facilities: [
       'All benefits of Standard',
       'Personal training sessions',
@@ -36,9 +36,8 @@ const plans = [
 
 
 
-const MembershipTable = ({day,time,id}) => {
+const MembershipTable = ({  slotId,trainerId }) => {
 
-  const [plan, setPlan] = useState('');
 
 
   return (
@@ -50,7 +49,6 @@ const MembershipTable = ({day,time,id}) => {
       <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
         {plans.map((plan) => (
           <div
-            onClick={() => setPlan(plan.name)}
             key={plan.name}
             className="bg-[#1a1a1a] rounded-xl shadow-lg hover:shadow-lime-500/40 transition p-8 flex flex-col"
           >
@@ -68,8 +66,8 @@ const MembershipTable = ({day,time,id}) => {
             </ul>
 
             <div className="mt-6 text-center">
-              <Link to={`payment-page/`} className="inline-block bg-lime-600 px-5 py-2 rounded-full font-semibold text-lg">
-                {plan.price}
+              <Link to={`/payment-page/?plan=${plan.name}&price=${plan.price}&trainerId=${trainerId}&slotId=${slotId}`} className="inline-block bg-lime-600 px-5 py-2 rounded-full font-semibold text-lg">
+                {plan.price} / mo
               </Link>
             </div>
           </div>

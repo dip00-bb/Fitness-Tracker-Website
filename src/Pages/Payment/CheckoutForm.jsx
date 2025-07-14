@@ -1,13 +1,17 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useQuery } from '@tanstack/react-query';
 import React, { use, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import Swal from 'sweetalert2';
-import axiosPublic from '../../Hooks/useAxiosPublic';
 import { AuthContext } from '../../Context/AuthContext/AuthContext';
+import useTitle from '../../Hooks/useTitle';
+import axiosPublic from '../../Hooks/useAxiosPublic';
+import Loader from '../../Utils/Loader';
 
 
 const CheckoutFrom = () => {
+
+    useTitle("Payment")
 
     const stripe = useStripe();
     const elements = useElements();
@@ -15,23 +19,43 @@ const CheckoutFrom = () => {
     const { user } = use(AuthContext)
     const navigate = useNavigate()
 
+
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const plan = searchParams.get('plan');
+    const price = searchParams.get('price')
+
+    const trainerId = searchParams.get('trainerId');
+    const slotId = searchParams.get('slotId');
+
+
+
     const [error, setError] = useState('')
 
-    const { isPending, data: parcelInfo = {} } = useQuery({
-        queryKey: ['parcels', parcel_ID],
+    const { isPending, data: slot = {} } = useQuery({
+        queryKey: ['slotDetails', slotId],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/parcels/${parcel_ID}`);
-            return res.data
+            const res = await axiosPublic.get(`/slot-details/${slotId}`, {
+                params: {
+                    trainerId: trainerId
+                }
+            });
+            return res.data.data
         }
 
 
     })
 
+
+
     if (isPending) {
-        <p>Loading...</p>
+        <Loader />
         return
     }
-    const amount = parcelInfo.cost
+
+
+
+    const amount = parseInt(price);
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -62,7 +86,7 @@ const CheckoutFrom = () => {
 
             const res = await axiosPublic.post('/create-payment-intent', {
                 amount: amount * 100,
-                parcel_ID
+                slotId
             })
             // confirm payment
             const clientSecret = res.data.clientSecret;
@@ -81,8 +105,8 @@ const CheckoutFrom = () => {
             } else {
                 setError('');
                 if (result.paymentIntent.status === 'succeeded') {
-                    const paymentResponse = await axiosPublic.post('/pay', {
-                        parcelId: parcel_ID,
+                    const paymentResponse = await axiosPublic.post('/save-payment-history', {
+                        slotId: slotId,
                         userEmail: user.email,
                         amount: amount,
                         status: 'paid',
@@ -103,7 +127,9 @@ const CheckoutFrom = () => {
 
                             });
 
-                            navigate('/dashboard/myParcels')
+                            // navigate('/dashboard/myParcels')
+
+
                         }
                     }
                 }
@@ -115,26 +141,61 @@ const CheckoutFrom = () => {
 
 
     return (
-        <div>
-            <form onSubmit={handleSubmit} className='bg-white max-w-md mx-auto p-6 rounded-sm space-y-4'>
+        <div className="px-4 py-6 min-h-[50vh]">
 
-                {/* for receive payment from card*/}
+            <form
+                onSubmit={handleSubmit}
+                className="max-w-lg mx-auto bg-white rounded-xl shadow-md p-6 space-y-6"
+            >
+                {/* Payment table */}
                 <CardElement />
+                <div className="overflow-x-auto">
+                    <table className="min-w-full border border-gray-300 text-sm md:text-base">
+                        <tbody>
+                            <tr className="bg-gray-100">
+                                <td className="border border-gray-800  text-gray-800 px-4 py-3 font-medium lg:text-xl">{plan}</td>
+                                <td className="border border-gray-800  text-gray-800 px-4 py-3 lg:text-xl">{slot.slotDay}</td>
+                            </tr>
+                            <tr>
+                                <td className="border border-gray-800 text-gray-800  px-4 py-3 font-medium text-xl">{slot.slotName}</td>
+                                <td className="border border-gray-800 text-gray-800 px-4 py-3 lg:text-xl">{user?.email}</td>
+                            </tr>
+                            <tr>
+                                <td className="border border-gray-800 text-gray-800 px-4 py-3 lg:text-xl">{price}</td>
+                                <td className="border border-gray-800 text-gray-800 px-4 py-3 lg:text-xl">{slot.slotTime}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-
-                <button type="submit" disabled={!stripe} className='bg-amber-700 w-full btn'>
+                {/* Submit Button */}
+                <button
+                    type="submit"
+                    disabled={!stripe}
+                    className={`w-full py-3 rounded-lg font-semibold text-white transition duration-300 cursor-pointer ${stripe
+                        ? 'bg-amber-600 hover:bg-amber-700'
+                        : 'bg-amber-300 cursor-not-allowed'
+                        }`}
+                >
                     Pay {amount}
                 </button>
-                {
-                    <p className='text-green-500'>{parcel_ID}</p>
-                }
 
-                {
-                    error && <p className='text-red-500'>{error}</p>
-                }
+                {/* Parcel ID */}
+                {parcel_ID && (
+                    <p className="text-center text-green-600 font-medium">
+                        {parcel_ID}
+                    </p>
+                )}
 
+                {/* Error Message */}
+                {error && (
+                    <p className="text-center text-red-600 font-medium">
+                        {error}
+                    </p>
+                )}
             </form>
         </div>
+
     );
 };
 
