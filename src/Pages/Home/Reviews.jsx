@@ -5,32 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const testimonials = [
-  {
-    id: 1,
-    name: "Daniel Berg",
-    role: "Founder, Some Company",
-    image: "/assets/user1.jpg",
-    quote:
-      "“This fitness platform completely transformed my lifestyle. The community is amazing and the trainers are incredibly supportive.”",
-  },
-  {
-    id: 2,
-    name: "Ariana Gomez",
-    role: "Member since 2023",
-    image: "/assets/user2.jpg",
-    quote:
-      "“Best decision ever! The workout plans are practical and very effective. Totally recommend it!”",
-  },
-  {
-    id: 3,
-    name: "Junaid Ahmed",
-    role: "Fitness Enthusiast",
-    image: "/assets/user3.jpg",
-    quote:
-      "“Helped me stay motivated and track my progress easily. Everything is beautifully designed.”",
-  },
-];
+
 
 const TestimonialCarousel = () => {
   return (

@@ -3,8 +3,13 @@ import React, { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Context/AuthContext/AuthContext';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
+import useTitle from '../../../Hooks/useTitle';
 
 const Profile = () => {
+
+
+    useTitle("Dashboard | My Profile")
+
     const { user, updateUser, setUser } = useContext(AuthContext);
 
 

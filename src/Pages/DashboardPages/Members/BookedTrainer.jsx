@@ -1,11 +1,12 @@
 // src/pages/dashboard/BookedTrainer.jsx
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
 import Loader from '../../../Utils/Loader';
 import { AuthContext } from '../../../Context/AuthContext/AuthContext';
 import useTitle from '../../../Hooks/useTitle';
 import ReviewModal from '../../../Utils/ReviewModal';
+import Swal from 'sweetalert2';
 
 const fetchEnrichedHistory = async (email) => {
     /* 1️⃣  base payment history */
@@ -43,12 +44,14 @@ const fetchEnrichedHistory = async (email) => {
 const BookedTrainer = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
-    const [target, setTarget] = useState({ trainerId: '', slotId: '',className:'' });
+    const [target, setTarget] = useState({ trainerId: '', slotId: '', className: '' });
 
 
     useTitle('Dashboard | Booked Trainer');
     const { user } = useContext(AuthContext);
+
     const email = user?.email;
+
 
     const {
         data: history = [],
@@ -111,7 +114,7 @@ const BookedTrainer = () => {
                                 // onClick={() => openReviewModal(trainer._id, slot?._id)}
 
                                 onClick={() => {
-                                    setTarget({ trainerId: trainer._id, slotId: slot?._id,className:className });
+                                    setTarget({ trainerId: trainer._id, slotId: slot?._id, className: className });
                                     setModalOpen(true);
                                 }}
 
@@ -128,11 +131,16 @@ const BookedTrainer = () => {
             <ReviewModal open={modalOpen}
                 trainerId={target.trainerId}
                 slotId={target.slotId}
-                className={target.slotId}
+                className={target.className}
                 onClose={(success) => {
                     setModalOpen(false);
                     if (success) {
-                        // optional: refetch reviews or show toast
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Review Submitted!',
+                            text: 'Thanks for sharing your feedback.',
+                            confirmButtonColor: '#16a34a', // green
+                        });
                     }
                 }} />
         </div >
@@ -140,3 +148,4 @@ const BookedTrainer = () => {
 };
 
 export default BookedTrainer;
+

@@ -42,26 +42,40 @@ const AllClasses = () => {
         {currentClasses.map((cls) => (
           <div
             key={cls._id}
-            className="bg-[#1a1a1a] shadow-md rounded-xl overflow-hidden transition-transform hover:scale-[1.02]"
+            className="bg-[#1a1a1a] shadow-md rounded-xl overflow-hidden transition-transform hover:scale-[1.02] flex flex-col h-full"
           >
+            {/* Fixed‑height image */}
             <img
               src={cls.image}
               alt={cls.name}
               className="h-40 w-full object-cover"
             />
 
-            <div className="p-4">
-              <h2 className="text-xl font-semibold text-lime-400 mb-2">{cls.name}</h2>
-              <p className="text-sm text-gray-300 mb-2 line-clamp-3">{cls.details}</p>
+            {/* Content wrapper */}
+            <div className="p-4 flex flex-col flex-1">
+              <h2 className="text-xl font-semibold text-lime-400 mb-2">
+                {cls.name}
+              </h2>
+
+              {/* Details grow/shrink without affecting total height */}
+              <p className="text-sm text-gray-300 mb-2 line-clamp-3 flex-1">
+                {cls.details}
+              </p>
+
               {cls.extraInfo && (
-                <p className="text-xs text-gray-400 mb-3">{cls.extraInfo}</p>
+                <p className="text-xs text-gray-400 mb-3">
+                  {cls.extraInfo}
+                </p>
               )}
-              <div className='bg-red-500'> Total Booked
-               { cls.totalBooked }
+
+              {/* Total booked badge / footer */}
+              <div className=" mb-3">
+                Total Booked {cls.totalBooked}
               </div>
-              {/* Trainer Avatars */}
-              {cls.trainer && cls.trainer.length > 0 && (
-                <div className="flex -space-x-3 mt-4">
+
+              {/* Trainer avatars pinned at bottom */}
+              {cls.trainer?.length > 0 && (
+                <div className="flex -space-x-3 mt-auto">
                   {cls.trainer.map((tr, idx) => (
                     <Link
                       key={idx}
@@ -79,6 +93,8 @@ const AllClasses = () => {
               )}
             </div>
           </div>
+
+
         ))}
       </div>
 
@@ -91,8 +107,8 @@ const AllClasses = () => {
               key={pageNum}
               onClick={() => setCurrentPage(pageNum)}
               className={`px-4 py-2 rounded-md border text-sm font-medium ${pageNum === currentPage
-                  ? 'bg-lime-500 text-black border-lime-500'
-                  : 'bg-transparent border-gray-600 text-white hover:bg-gray-700'
+                ? 'bg-lime-500 text-black border-lime-500'
+                : 'bg-transparent border-gray-600 text-white hover:bg-gray-700'
                 }`}
             >
               {pageNum}

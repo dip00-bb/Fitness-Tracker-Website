@@ -35,6 +35,7 @@
 // export default Banner;
 import React from "react";
 import { images } from "../../assets/asset";
+import { Link } from "react-router";
 
 const Banner = () => {
     return (
@@ -59,9 +60,9 @@ const Banner = () => {
                     <p className="text-3xl md:text-3xl mb-6 text-gray-300 text-center">
                         Build strength, sculpt your body, and transform your lifestyle with expert-guided training programs.
                     </p>
-                    <button className="bg-lime-400 w-fit text-black px-6 py-3 uppercase tracking-wide font-semibold hover:bg-lime-700 transition-all duration-300 cursor-pointer">
+                    <Link to='/all-classes' className="bg-lime-400 w-fit text-black px-6 py-3 uppercase tracking-wide font-semibold hover:bg-lime-700 transition-all duration-300 cursor-pointer">
                         Explore Classes
-                    </button>
+                    </Link>
                 </div>
 
             </div>

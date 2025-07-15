@@ -4,8 +4,13 @@ import { useQuery } from '@tanstack/react-query';
 import { FaRegEye } from 'react-icons/fa6';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
 import Loader from '../../../Utils/Loader';
+import useTitle from '../../../Hooks/useTitle';
 
 const ActivityLog = () => {
+
+
+  useTitle("Dashboard | Activity")
+
   const [modalData, setModalData] = useState(null);
 
   /* fetch all pending/rejected users */

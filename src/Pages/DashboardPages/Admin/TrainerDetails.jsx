@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
-import moment from 'moment';
+
 import Loader from '../../../Utils/Loader';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import useTitle from '../../../Hooks/useTitle';
 
 const TrainerDetails = () => {
-    
+
     useTitle("Dashboard | Pending Trainer Details")
 
     const { id } = useParams();
-    const navigate=useNavigate()
+    const navigate = useNavigate()
 
 
     // Add state above return
@@ -27,6 +27,7 @@ const TrainerDetails = () => {
                     title: 'Approved!',
                     text: 'Trainer status and role updated successfully.',
                 });
+                navigate('/dashboard/pending-trainers')
             } else {
                 Swal.fire({
                     icon: 'error',
@@ -83,10 +84,10 @@ const TrainerDetails = () => {
                             <p className="text-sm text-gray-400 mb-1">Available Time</p>
                             <p className="text-xl font-bold">{trainer.availableTime}</p>
                         </div>
-                        <div className="bg-[#222] p-4 rounded-lg col-span-full">
+                        {/* <div className="bg-[#222] p-4 rounded-lg col-span-full">
                             <p className="text-sm text-gray-400 mb-1">Applied At</p>
                             <p className="text-xl font-bold">{moment(trainer.appliedAt).format("MMMM Do YYYY, h:mm A")}</p>
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* Skills */}
@@ -194,7 +195,7 @@ const TrainerDetails = () => {
                                 onClick={async () => {
                                     try {
                                         const res = await axiosPublic.post(`/reject-trainer/${id}`, {
-                                            feedback,email:trainer.email
+                                            feedback, email: trainer.email
                                         });
 
 
@@ -207,6 +208,7 @@ const TrainerDetails = () => {
                                             });
                                             setIsRejectModalOpen(false);
                                             navigate('/dashboard/pending-trainers')
+
                                         } else {
                                             Swal.fire({
                                                 icon: 'error',

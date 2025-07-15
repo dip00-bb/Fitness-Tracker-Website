@@ -6,16 +6,20 @@ import About from './About';
 import ReviewCarousel from './Reviews';
 import TestimonialCarousel from './Reviews';
 import TeamSection from './Team';
+import useTitle from '../../Hooks/useTitle';
+import FeaturedClasses from './FeaturedClasses';
 
 const Home = () => {
+    useTitle("Home")
     return (
         <div>
-            <Banner/>
-            <FeaturedSection/>
-            <About/>
-            <Newsletter/>
-            <TestimonialCarousel/>
-            <TeamSection/>
+            <Banner />
+            <FeaturedSection />
+            <About />
+            <FeaturedClasses />
+            <TestimonialCarousel />
+            <Newsletter />
+            <TeamSection />
         </div>
     );
 };
