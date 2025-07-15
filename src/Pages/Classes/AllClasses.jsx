@@ -56,7 +56,9 @@ const AllClasses = () => {
               {cls.extraInfo && (
                 <p className="text-xs text-gray-400 mb-3">{cls.extraInfo}</p>
               )}
-
+              <div className='bg-red-500'> Total Booked
+               { cls.totalBooked }
+              </div>
               {/* Trainer Avatars */}
               {cls.trainer && cls.trainer.length > 0 && (
                 <div className="flex -space-x-3 mt-4">
@@ -88,11 +90,10 @@ const AllClasses = () => {
             <button
               key={pageNum}
               onClick={() => setCurrentPage(pageNum)}
-              className={`px-4 py-2 rounded-md border text-sm font-medium ${
-                pageNum === currentPage
+              className={`px-4 py-2 rounded-md border text-sm font-medium ${pageNum === currentPage
                   ? 'bg-lime-500 text-black border-lime-500'
                   : 'bg-transparent border-gray-600 text-white hover:bg-gray-700'
-              }`}
+                }`}
             >
               {pageNum}
             </button>

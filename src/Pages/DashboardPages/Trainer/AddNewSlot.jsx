@@ -96,9 +96,11 @@ const AddNewSlot = () => {
         slotDay: data.slotDay.value,
         slotTime:data.slotTime,
         classId: data.classId.value,
+        className:data.classId.label,
         trainerID,
         trainerEmail,
-        extraInfo: data.extraInfo || ''
+        extraInfo: data.extraInfo || '',
+        bookedByStudent:[],
       });
 
       Swal.fire('Success', 'Slot added!', 'success');
@@ -226,6 +228,7 @@ const AddNewSlot = () => {
         <div>
           <label className="block mb-1 text-sm">Class Include</label>
           <Controller
+
             name="classId"
             control={control}
             rules={{ required: true }}

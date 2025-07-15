@@ -157,7 +157,7 @@ const ApprovedTrainerDetails = () => {
                     onClick={() => navigate(`/book-trainer/${id}?slotId=${slot._id}`)}
                     className=" border-1 hover:bg-lime-700 px-4 py-2 rounded-md font-semibold transition hover:scale-105 cursor-pointer"
                   >
-                    {slot.slotName} :  {slot.slotDay}
+                    {slot.slotName} :  {slot.className}
                   </button>
                 ))}
               </div>

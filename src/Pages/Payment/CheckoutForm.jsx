@@ -107,9 +107,10 @@ const CheckoutFrom = () => {
                 if (result.paymentIntent.status === 'succeeded') {
                     const paymentResponse = await axiosPublic.post('/save-payment-history', {
                         slotId: slotId,
-                        userEmail: user.email,
+                        trainerId:trainerId,
+                        studentEmail: user.email,
+                        studentName:user.displayName,
                         amount: amount,
-                        status: 'paid',
                         transactionId: result.paymentIntent.id,
                         paymentMethod: result.paymentIntent.payment_method_types[0],
                     });

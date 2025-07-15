@@ -67,7 +67,7 @@ const BookTrainer = () => {
             </div>
 
 
-            <MembershipTable  slotId={slotId} trainerId={id}/>
+            <MembershipTable  slotId={slotId} trainerId={id} />
 
 
 

@@ -33,7 +33,8 @@ const AddClass = () => {
       name: data.name,
       image: data.image,
       details: data.details,
-      extraInfo: data.extraInfo
+      extraInfo: data.extraInfo,
+      totalBooked:0
     });
   };
 

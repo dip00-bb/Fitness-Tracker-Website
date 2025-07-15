@@ -26,6 +26,7 @@ import Forbidden from "../Pages/Forbidden/Forbidden";
 import AdminRoute from "../PrivateRoute/AdminRoute";
 import TrainerRoute from "../PrivateRoute/TrainerRoute";
 import MemberRoute from "../PrivateRoute/MemberRoute";
+import BookedTrainer from "../Pages/DashboardPages/Members/BookedTrainer";
 
 
 export const router = createBrowserRouter([
@@ -142,6 +143,11 @@ export const router = createBrowserRouter([
             {
                 path: 'profile',
                 element: <MemberRoute> <Profile /> </MemberRoute>,
+            },
+
+            {
+                path:'booked-trainer',
+                element:<MemberRoute> <BookedTrainer /> </MemberRoute>,
             },
 
 
