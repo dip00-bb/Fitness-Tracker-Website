@@ -5,12 +5,15 @@ import Swal from 'sweetalert2';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
 import Loader from '../../../Utils/Loader';
 import useTitle from '../../../Hooks/useTitle';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 
 const ManageTrainer = () => {
 
   useTitle("Dashboard | Manage Trainer")
-  /* ────────────────── Fetch with TanStack Query ────────────────── */
+
+  const axiosSecure=useAxiosSecure()
+
   const {
     data: trainers = [],
     isLoading,
@@ -19,7 +22,7 @@ const ManageTrainer = () => {
   } = useQuery({
     queryKey: ['approvedTrainersDashboard'],
     queryFn: async () => {
-      const res = await axiosPublic.get('/approved-trainers');
+      const res = await axiosSecure.get('/approved-trainers');
       return res.data;
     }
   });

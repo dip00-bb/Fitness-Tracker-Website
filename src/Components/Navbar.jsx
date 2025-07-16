@@ -2,10 +2,25 @@ import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router';
 import { AuthContext } from '../Context/AuthContext/AuthContext';
 import { images } from '../assets/asset';
+import Loader from '../Utils/Loader';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { user, signout } = useContext(AuthContext);
+  const { user, signout, userRole,roleLoading } = useContext(AuthContext);
+
+
+  if(roleLoading){
+    return <Loader/>
+  }
+
+  const targetRuleRoute = {
+    admin: "all-newsletters",
+    trainer: "manage-slots",
+    member: "activity-log",
+  };
+  const redirectRoute = targetRuleRoute[userRole] || "activity-log";
+
+
 
   const handleLogout = () => signout();
 
@@ -48,7 +63,7 @@ const Navbar = () => {
         <>
           <li>
             <NavLink
-              to="/dashboard/all-newsletters"
+              to={`/dashboard/${redirectRoute}`}
               className="text-[1.2rem] hover:text-green-500 transition-colors"
             >
               Dashboard

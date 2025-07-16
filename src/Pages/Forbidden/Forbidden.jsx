@@ -1,11 +1,11 @@
 // src/pages/Forbidden.jsx
-import React from 'react';
 import { Link } from 'react-router';
 import useTitle from '../../Hooks/useTitle';
 
 
 const Forbidden = () => {
   useTitle('403 Forbidden');
+
 
   return (
     <div className="min-h-screen bg-[#0d0d0d] flex flex-col items-center justify-center text-center text-white px-6">

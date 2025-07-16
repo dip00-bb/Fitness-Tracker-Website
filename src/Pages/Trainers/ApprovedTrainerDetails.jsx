@@ -28,6 +28,8 @@ const ApprovedTrainerDetails = () => {
   if (isError) return <div className="text-red-500 p-6">Failed to load trainer info.</div>;
 
   return (
+
+
     <div className="min-h-screen bg-[#111] text-white py-12 px-4 md:px-16">
       {/* Header with CTA */}
       <div className="flex justify-between items-center mb-10 flex-col md:flex-row gap-6">

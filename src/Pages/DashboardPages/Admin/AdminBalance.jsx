@@ -3,18 +3,18 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import useTitle from '../../../Hooks/useTitle';
-import axiosPublic from '../../../Hooks/useAxiosPublic';
 import Loader from '../../../Utils/Loader';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const COLORS = ['#84cc16', '#0ea5e9']; 
 
 const AdminBalance = () => {
     useTitle('Dashboard | Balance');
-
+    const axiosSecure=useAxiosSecure()
     const { data, isLoading, isError } = useQuery({
         queryKey: ['financialSummary'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/admin/financial-summary');
+            const res = await axiosSecure.get('/admin/financial-summary');
             return res.data;
         }
     });
@@ -75,7 +75,7 @@ const AdminBalance = () => {
                                 ))}
                             </Pie>
                             <Tooltip
-                                wrapperStyle={{ background: '#1a1a1a', border: 'none' }}
+                                wrapperStyle={{ background: '#edf7f4', border: 'none' }}
                                 contentStyle={{ background: '#1a1a1a', border: 'none' }}
                                 labelStyle={{ color: '#fff' }}
                                 formatter={(value, name) => [`${value}`, name]}

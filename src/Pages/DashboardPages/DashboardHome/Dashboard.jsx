@@ -15,19 +15,21 @@ import { GiMuscleUp } from 'react-icons/gi';
 import { MdPending } from 'react-icons/md';
 import { AuthContext } from '../../../Context/AuthContext/AuthContext';
 import { FaDollarSign } from 'react-icons/fa6';
+import Loader from '../../../Utils/Loader';
 
 const DashboardLayout = () => {
-  const { userRole } = useContext(AuthContext);
+  const {user, userRole,roleLoading } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
 
-  // reusable link style
+  if(!user|| roleLoading){
+    return <Loader/>
+  }
+
   const linkClass =
     'flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700';
 
   return (
     <div className="min-h-screen bg-base-100 text-base-content grid lg:grid-cols-[260px_1fr] ">
-      {/* ─────────── Sidebar ─────────── */}
-      {/* Overlay – shows only on small screens when sidebar open */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-30 lg:hidden"
@@ -50,7 +52,7 @@ const DashboardLayout = () => {
             </NavLink>
           </li>
 
-          {/* ─── Admin links ───────────────────────────── */}
+
           {userRole === 'admin' && (
             <>
               <li>
@@ -103,7 +105,7 @@ const DashboardLayout = () => {
             </>
           )}
 
-          {/* ─── Trainer links ────────────────────────── */}
+
           {userRole === 'trainer' && (
             <>
               <li>
@@ -127,7 +129,6 @@ const DashboardLayout = () => {
             </>
           )}
 
-          {/* Both trainer & admin */}
           {(userRole === 'trainer' || userRole === 'admin') && (
             <li>
               <NavLink
@@ -140,7 +141,7 @@ const DashboardLayout = () => {
             </li>
           )}
 
-          {/* ─── Member links ────────────────────────── */}
+
           {userRole === 'member' && (
             <>
               <li>

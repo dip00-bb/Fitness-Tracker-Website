@@ -9,7 +9,7 @@ const TeamSection = () => {
     const { data: trainers = [], isLoading, isError } = useQuery({
         queryKey: ['teamSection'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/approved-trainers');
+            const res = await axiosPublic.get('/approved-trainers-public');
             return res.data;                // full list; we’ll slice in UI
         }
     });
@@ -18,7 +18,7 @@ const TeamSection = () => {
     const profiles = trainers.slice(0, 3);
 
     return (
-        <section className="py-16 px-4 md:px-16 bg-[#0d0d0d] text-white">
+        <section className="py-16 px-4 bg-[#0d0d0d] text-white mx-w-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-14">
                 Meet <span className="text-lime-500">Our Trainers</span>
             </h2>

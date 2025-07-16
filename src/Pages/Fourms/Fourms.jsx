@@ -1,11 +1,13 @@
 // src/pages/Forums.jsx
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa6';
 import axiosPublic from '../../Hooks/useAxiosPublic';
 import Loader from '../../Utils/Loader';
 import useTitle from '../../Hooks/useTitle';
 import { images } from '../../assets/asset';
+import { AuthContext } from '../../Context/AuthContext/AuthContext';
+import toast from 'react-hot-toast';
 
 const ForumCard = ({ post, onVote }) => (
   <div className="bg-[#1a1a1a] rounded-lg shadow-md p-6 space-y-4">
@@ -74,6 +76,7 @@ const Forums = () => {
 
   const [page, setPage] = useState(1);
   const queryClient = useQueryClient();
+  const {user} =use(AuthContext)
 
 
   const { data, isLoading, isError } = useQuery({
@@ -97,6 +100,10 @@ const Forums = () => {
   const handleVote = (id, vote) => {
 
     // if(post)
+    if(!user){
+      toast.error("Please Login First")
+      return 
+    }
     voteMutation.mutate({ id, vote });
   };
 

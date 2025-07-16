@@ -33,7 +33,7 @@ const AllClasses = () => {
   const currentClasses = classes.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
-    <section className="min-h-screen bg-[#0d0d0d] text-white py-12 px-4 md:px-16">
+    <section className="min-h-screen bg-[#0d0d0d] text-white py-12 px-4 mx-w-auto">
       <h2 className="text-4xl font-bold text-center text-lime-500 mb-10">
         All Classes
       </h2>

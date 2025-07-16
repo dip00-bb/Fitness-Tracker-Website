@@ -78,7 +78,7 @@ const Newsletter = () => {
     };
 
     return (
-        <div className="text-white mx-w-auto py-10">
+        <div className="text-white mx-w-auto py-10 px-4">
             <div className="py-10 md:flex items-center justify-between gap-10 bg-black">
                 {/* Left Content */}
                 <div className="md:w-1/2 mb-6 md:mb-0">

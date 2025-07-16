@@ -1,17 +1,17 @@
-import React, { use, } from 'react';
+import React, { useContext, } from 'react';
 import { AuthContext } from '../Context/AuthContext/AuthContext';
 import Loader from '../Utils/Loader';
 import { Navigate } from 'react-router';
 
 const AdminRoute = ({children}) => {
 
-    const {user,userRole,roleLoading}=use(AuthContext)
+    const {user,userRole,roleLoading}=useContext(AuthContext)
 
-    if(roleLoading){
-        <Loader/>
+    if( roleLoading || !user ){
+      return  <Loader/>
     }
 
-    if(!user || userRole !== "admin"){
+    if(userRole !== "admin"){
         return <Navigate to='/dashboard/forbidden'>
 
         </Navigate>

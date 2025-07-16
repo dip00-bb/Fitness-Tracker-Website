@@ -34,6 +34,8 @@ import TrainerAndAdminRoute from "../PrivateRoute/TrainerAndAdminRoute";
 import LatestPostDetails from "../Pages/Home/LatestPostDetails";
 
 
+
+
 export const router = createBrowserRouter([
 
     {
@@ -108,7 +110,10 @@ export const router = createBrowserRouter([
         children: [
 
 
-
+            // {
+            //     index:true,
+            //     element: <div>Welcome</div>
+            // },
 
             // admin 
 

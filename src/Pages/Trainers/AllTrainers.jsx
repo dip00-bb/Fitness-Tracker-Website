@@ -9,12 +9,12 @@ import useTitle from '../../Hooks/useTitle';
 
 const TrainerSection = () => {
 
-    useTitle("All Trainers")
+    useTitle("All Trainers");
 
     const { data: trainers = [], isLoading, isError } = useQuery({
         queryKey: ['approvedTrainers'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/approved-trainers');
+            const res = await axiosPublic.get('/approved-trainers-public');
             return res.data;
         }
     });
@@ -23,11 +23,11 @@ const TrainerSection = () => {
     if (isError) return <p className="text-red-500 p-6">Error loading trainer profiles.</p>;
 
     return (
-        <div className="py-12 px-4 md:px-20 bg-[#0e0e0e] text-white">
-            <h2 className="text-4xl font-bold text-center mb-10">Our Trainers</h2>
+        <div className="py-12 px-4 md:px-20 bg-[#0e0e0e] text-white mx-w-auto">
+            <h2 className="text-4xl font-bold text-center mb-10 text-lime-500">Our Trainers</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                 {trainers.map((trainer) => (
-                    <div key={trainer._id} className="bg-[#1a1a1a] rounded-xl p-6 shadow-xl hover:shadow-red-500/20 transition flex flex-col">
+                    <div key={trainer._id} className="bg-[#1a1a1a] rounded-xl p-6 shadow-xl hover:shadow-lime-500/20 transition flex flex-col">
                         <div className='h-64 mb-3'>
                             <img
                                 src={trainer.profileImage}
@@ -39,6 +39,8 @@ const TrainerSection = () => {
                         {/* <p className="text-gray-300 mb-1"><span className="text-white font-semibold">Experience:</span> {trainer.experience}+ Years</p> */}
                         <p className="text-gray-300 mb-3"><span className="text-white font-semibold">Available:</span> {trainer.availableDays?.join(', ')}</p>
                         {/* <p className="text-gray-300 mb-3">{trainer.otherInfo}</p> */}
+
+                        <p className='text-gray-300 mb-3'> Experience : {trainer.experience} Years</p>
 
                         {/* Social Icons */}
                         <div className="flex items-center gap-4 text-xl mb-6 ">

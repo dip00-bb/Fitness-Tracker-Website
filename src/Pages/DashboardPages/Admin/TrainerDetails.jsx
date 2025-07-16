@@ -154,7 +154,7 @@ const TrainerDetails = () => {
                     />
                 </div>
             </div>
-            <button onClick={handleApproveTrainer} className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white cursor-pointer mr-3.5">Approve</button>
+            <button onClick={handleApproveTrainer} className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white cursor-pointer mr-3.5 mt-10">Approve</button>
             <button onClick={() => setIsRejectModalOpen(true)} className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-white cursor-pointer">Reject</button>
 
             {/* Reject Modal */}

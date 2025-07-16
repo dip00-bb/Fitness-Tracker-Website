@@ -1,19 +1,21 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../../Utils/Loader';
-import axiosPublic from '../../../Hooks/useAxiosPublic';
 import { Link } from 'react-router';
 import useTitle from '../../../Hooks/useTitle';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const AllPendingTrainer = () => {
 
 
-    useTitle("Dashboard | Applied Trainer")
+    useTitle("Dashboard | Applied Trainer");
+
+    const axiosSecure=useAxiosSecure()
 
     const { data: trainers = [], isLoading, isError } = useQuery({
         queryKey: ['pendingTrainers'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/pending-trainers');
+            const res = await axiosSecure.get('/pending-trainers');
             return res.data;
         },
     });

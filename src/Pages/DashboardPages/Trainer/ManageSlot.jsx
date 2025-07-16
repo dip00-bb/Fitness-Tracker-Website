@@ -6,9 +6,11 @@ import { AuthContext } from '../../../Context/AuthContext/AuthContext';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
 import Loader from '../../../Utils/Loader';
 import useTitle from '../../../Hooks/useTitle';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const ManageSlot = () => {
     useTitle('Dashboard | Manage Slot');
+    const axiosSecure = useAxiosSecure()
     const { user } = useContext(AuthContext);
     const email = user?.email;
     const queryClient = useQueryClient();
@@ -22,8 +24,8 @@ const ManageSlot = () => {
         enabled: !!email,
         queryKey: ['trainerSlots', email],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/trainer-slot/${email}`);
-            return res.data; // { fullName, slots: [...] }
+            const res = await axiosSecure.get(`/trainer-slot/${email}`);
+            return res.data; 
         }
     });
 

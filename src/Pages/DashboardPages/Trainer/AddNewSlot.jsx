@@ -76,21 +76,19 @@ const AddNewSlot = () => {
     const trainerID = trainer._id;
 
     try {
-      /* ───────── 1) TRY to add trainer to the class ───────── */
+
       const addTrainerRes = await axiosPublic.patch(
         `/insert-trainer-in-class/${data.classId.value}`,
         { trainerEmail, trainerImage, trainerID }
       );
 
-      /* If backend returns success === false, throw for catch */
       if (!addTrainerRes.data?.success) {
         throw new Error(addTrainerRes.data?.message || 'Unable to add trainer');
       }
 
-      /* Show success for adding trainer */
       await Swal.fire('Added!', 'Trainer linked to class.', 'success');
 
-      /* ───────── 2) NOW add the slot itself ───────── */
+
       await axiosPublic.patch(`/add-new-slot/${trainerEmail}`, {
         slotName: data.slotName.value,
         slotDay: data.slotDay.value,

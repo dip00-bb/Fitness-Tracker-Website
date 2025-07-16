@@ -1,10 +1,11 @@
 // src/pages/dashboard/ActivityLog.jsx
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { FaRegEye } from 'react-icons/fa6';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
 import Loader from '../../../Utils/Loader';
 import useTitle from '../../../Hooks/useTitle';
+import { AuthContext } from '../../../Context/AuthContext/AuthContext';
 
 const ActivityLog = () => {
 
@@ -12,6 +13,10 @@ const ActivityLog = () => {
   useTitle("Dashboard | Activity")
 
   const [modalData, setModalData] = useState(null);
+
+  const { user, userRule } = use(AuthContext)
+  console.log("helllo gyus")
+  console.log('dn', userRule)
 
   /* fetch all pending/rejected users */
   const { data, isLoading, isError, } = useQuery({
@@ -41,7 +46,7 @@ const ActivityLog = () => {
   };
 
   if (isLoading) return <Loader />;
-  if (isError)   return <p className="text-red-500 p-6">Could not load data.</p>;
+  if (isError) return <p className="text-red-500 p-6">Could not load data.</p>;
 
   return (
     <div className="p-6 text-white">
@@ -62,8 +67,8 @@ const ActivityLog = () => {
             {data.map((u, idx) => (
               <tr key={u.email} className="border-b border-gray-700">
                 <td className="py-3 px-4">{idx + 1}</td>
-                <td className="py-3 px-4">{u.name}</td>
-                <td className="py-3 px-4">{u.email}</td>
+                <td className="py-3 px-4">{u.name} </td>
+                <td className="py-3 px-4">{u.email}{u.email === user.email && "(me)"}</td>
                 <td className="py-3 px-4 capitalize">{u.trainerStatus}</td>
                 <td className="py-3 px-4">
                   {u.trainerStatus === 'rejected' && (

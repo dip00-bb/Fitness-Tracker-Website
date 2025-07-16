@@ -17,28 +17,27 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
 
 
-    const [roleLoading, setRoleLoading] = useState(true); 
+    const [roleLoading, setRoleLoading] = useState(true);
 
     useEffect(() => {
         const fetchRole = async () => {
             if (user?.email) {
-                setRoleLoading(true); 
+                setRoleLoading(true);
                 try {
                     const res = await axiosPublic.get(`/user-role/${user.email}`);
                     setUserRole(res.data.role);
                 } catch (err) {
                     console.error('Error fetching user role:', err);
                 } finally {
-                    setRoleLoading(false); 
+                    setRoleLoading(false);
                 }
             } else {
-                setRoleLoading(false); 
+                setRoleLoading(false);
             }
         };
 
         fetchRole();
     }, [user]);
-
 
 
 
@@ -63,13 +62,28 @@ const AuthProvider = ({ children }) => {
     }
 
     const signout = () => {
+        localStorage.removeItem('access-token');
         return signOut(auth)
     }
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser)
             setLoading(false)
+
+            if (currentUser?.email) {
+                try {
+                    const res = await axiosPublic.post('/jwt', {
+                        email: currentUser.email,
+                    });
+                    localStorage.setItem('access-token', res.data.token);
+                } catch (err) {
+                    console.error('JWT Fetch Error:', err);
+                }
+            } else {
+                localStorage.removeItem('access-token');
+            }
+
         })
         return () => {
             unSubscribe()
