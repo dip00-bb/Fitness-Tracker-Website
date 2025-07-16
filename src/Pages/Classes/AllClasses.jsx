@@ -48,7 +48,7 @@ const AllClasses = () => {
             <img
               src={cls.image}
               alt={cls.name}
-              className="h-40 w-full object-cover"
+              className="h-50 w-full object-fill"
             />
 
             {/* Content wrapper */}

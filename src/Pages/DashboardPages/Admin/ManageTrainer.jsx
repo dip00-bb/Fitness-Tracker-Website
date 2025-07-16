@@ -25,7 +25,7 @@ const ManageTrainer = () => {
   });
 
   /* ────────────────── Delete Handler ───────────────── */
-  const handleDelete = async (email) => {
+  const handleDelete = async (email,id) => {
     const confirm = await Swal.fire({
       title: 'Are you sure?',
       text: `This will delete the trainer and demote them to member.`,
@@ -41,8 +41,15 @@ const ManageTrainer = () => {
     try {
       // 1️⃣ Demote in userCollection
       await axiosPublic.patch('/demote-to-member', { email });
-      // 2️⃣ Remove from trainerCollection
+      //  Remove from trainerCollection
       await axiosPublic.delete(`/delete-trainer?email=${email}`);
+      //  Remove from classesCollection
+      await axiosPublic.delete(`/delete-from-class?email=${email}`);
+      // remove from payment history
+      await axiosPublic.delete(`/delete-from-payment-history?trainerId=${id}`);
+
+  
+
 
       await refetch(); // refresh table
 
@@ -64,7 +71,7 @@ const ManageTrainer = () => {
   };
 
   if (isLoading) return <Loader />;
-  if (isError)   return <p className="text-red-500 p-6">Failed to load trainers.</p>;
+  if (isError) return <p className="text-red-500 p-6">Failed to load trainers.</p>;
 
   return (
     <div className="p-6 text-white">
@@ -94,7 +101,7 @@ const ManageTrainer = () => {
                 <td className="py-3 px-4">{tr.experience}+ yrs</td>
                 <td className="py-3 px-4">
                   <button
-                    onClick={() => handleDelete(tr.email)}
+                    onClick={() => handleDelete(tr.email,tr._id)}
                     className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded text-sm cursor-pointer"
                   >
                     Delete

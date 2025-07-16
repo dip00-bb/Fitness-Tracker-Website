@@ -12,6 +12,7 @@ const fetchEnrichedHistory = async (email) => {
     /* 1️⃣  base payment history */
     const payRes = await axiosPublic.get(`/payment-history/${email}`);
     const payments = payRes.data.data || [];
+    
 
     /* 2️⃣  enrich each record in parallel */
     return Promise.all(
@@ -64,7 +65,7 @@ const BookedTrainer = () => {
     });
 
 
-    console.log("my history")
+
 
     if (!email || isLoading) return <Loader />;
     if (isError) return <p className="text-red-500 p-6">Failed to load bookings.</p>;

@@ -60,7 +60,7 @@ const Register = () => {
     };
 
     return (
-        <div className="flex flex-col-reverse md:flex-row justify-between items-center max-w-11/12 mx-auto py-12 gap-8">
+        <div className="flex flex-col-reverse md:flex-row justify-between items-center max-w-11/12 mx-auto py-12 gap-8 text-gray-300">
 
             {/* Form Section */}
             <div className="w-full md:w-1/2 p-6">

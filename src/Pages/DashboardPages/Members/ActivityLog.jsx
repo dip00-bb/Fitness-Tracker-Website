@@ -14,7 +14,7 @@ const ActivityLog = () => {
   const [modalData, setModalData] = useState(null);
 
   /* fetch all pending/rejected users */
-  const { data, isLoading, isError, refetch } = useQuery({
+  const { data, isLoading, isError, } = useQuery({
     queryKey: ['trainerStatusList'],
     queryFn: async () => {
       const res = await axiosPublic.get('/trainer-status-list');

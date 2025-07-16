@@ -27,6 +27,8 @@ import AdminRoute from "../PrivateRoute/AdminRoute";
 import TrainerRoute from "../PrivateRoute/TrainerRoute";
 import MemberRoute from "../PrivateRoute/MemberRoute";
 import BookedTrainer from "../Pages/DashboardPages/Members/BookedTrainer";
+import AdminBalance from "../Pages/DashboardPages/Admin/AdminBalance";
+import NotFoundPage from "../Pages/NotFound/NotFound";
 
 
 export const router = createBrowserRouter([
@@ -111,6 +113,10 @@ export const router = createBrowserRouter([
                 path: 'all-trainers-list',
                 element: <AdminRoute> <ManageTrainer /> </AdminRoute>
             },
+            {
+                path:'balance',
+                element: <AdminRoute> <AdminBalance /> </AdminRoute>
+            },
 
             {
                 path: 'add-forums',
@@ -158,6 +164,10 @@ export const router = createBrowserRouter([
                 Component: Forbidden
             },
         ]
+    },
+    {
+        path:'*',
+        Component:NotFoundPage
     }
 
 ])
