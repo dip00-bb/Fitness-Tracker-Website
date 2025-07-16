@@ -5,6 +5,7 @@ import { FaArrowUp, FaArrowDown } from 'react-icons/fa6';
 import axiosPublic from '../../Hooks/useAxiosPublic';
 import Loader from '../../Utils/Loader';
 import useTitle from '../../Hooks/useTitle';
+import { images } from '../../assets/asset';
 
 const ForumCard = ({ post, onVote }) => (
   <div className="bg-[#1a1a1a] rounded-lg shadow-md p-6 space-y-4">
@@ -14,6 +15,13 @@ const ForumCard = ({ post, onVote }) => (
         alt={post.author}
         className="w-10 h-10 rounded-full object-cover"
       />
+
+      <img
+        src={post.authorRole==="admin" ? images.adminBadge : images.trainerBadge}
+        alt={post.author}
+        className="w-10 h-10 rounded-full object-cover"
+      />
+
       <div>
         <p className="font-semibold">{post.author}</p>
         <p className="text-xs text-gray-400">
@@ -87,11 +95,13 @@ const Forums = () => {
   });
 
   const handleVote = (id, vote) => {
-    voteMutation.mutate({ id, vote }); 
+
+    // if(post)
+    voteMutation.mutate({ id, vote });
   };
 
   if (isLoading) return <Loader />;
-  if (isError)   return <p className="text-red-500 p-6">Failed to load forums.</p>;
+  if (isError) return <p className="text-red-500 p-6">Failed to load forums.</p>;
 
   const { data: posts, totalPages } = data;
 

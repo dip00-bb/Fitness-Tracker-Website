@@ -15,15 +15,34 @@ const Register = () => {
     const {
         register,
         handleSubmit,
-        // formState: { errors },
+        formState: { errors },
     } = useForm()
 
+
+    const validatePassword = (value) => {
+        const minLength = value.length >= 6;
+        const hasCapital = /[A-Z]/.test(value);
+        const hasSmall = /[a-z]/.test(value);
+        const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+
+        if (!minLength) return "Password must be at least 6 characters long";
+        if (!hasCapital) return "Password must contain at least one capital letter";
+        if (!hasSmall) return "Password must contain at least one small letter";
+        if (!hasSpecial) return "Password must contain at least one special character";
+        return true;
+    };
+
+
     const onSubmit = (data) => {
+
+
+        validatePassword(data.userPassword)
+
         userRegister(data.userEmail, data.userPassword)
             .then((res) => {
                 if (res.user) {
 
-                    const user=res.user
+                    const user = res.user
                     updateUser(data.userName, data.userPhoto).then(() => {
 
                         setUser({ ...user, displayName: data.userName, photoURL: data.userPhoto });
@@ -111,11 +130,11 @@ const Register = () => {
                         <label className="block mb-1 font-medium">Password</label>
                         <input
 
-                            {...register("userPassword")}
+                            {...register("userPassword", { required: "Password is required", validate: validatePassword })}
                             type="password"
                             placeholder="Enter password"
                             className="w-full border-b-2 border-white focus:outline-none focus:border-red-500 py-2"
-                            required
+
                         />
                     </div>
 
@@ -126,6 +145,12 @@ const Register = () => {
                         Register
                     </button>
                 </form>
+
+                {errors.userPassword && (
+                    <p className="text-red-500 text-sm mt-1 text-center">
+                        {errors.userPassword.message}
+                    </p>
+                )}
             </div>
 
             {/* Image Section */}

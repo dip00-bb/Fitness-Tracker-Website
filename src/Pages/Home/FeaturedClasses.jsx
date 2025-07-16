@@ -20,7 +20,7 @@ const FeaturedClasses = () => {
     if (isError) return <p className="text-center text-red-500">Couldn’t load featured classes.</p>;
 
     return (
-        <section className="my-12">
+        <section className="my-12 mx-w-auto px-4 ">
             <h2 className="text-4xl md:text-6xl font-bold text-center text-lime-500 mb-6">
                 Featured Classes
             </h2>
@@ -31,11 +31,13 @@ const FeaturedClasses = () => {
                         key={cls._id}
                         className="rounded-2xl shadow-sm bg-base-100 overflow-hidden hover:shadow-md transition"
                     >
-                        <img
-                            src={cls.image}
-                            alt={cls.name}
-                            className="h-48 w-full object-fill"
-                        />
+                        <div className='h-52 md:h-72'>
+                            <img
+                                src={cls.image}
+                                alt={cls.name}
+                                className="h-full w-full object-fill"
+                            />
+                        </div>
 
                         <div className='p-4'>
                             <div className="flex flex-col gap-3 mb-3">

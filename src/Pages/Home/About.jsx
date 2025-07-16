@@ -3,9 +3,9 @@ import { images } from "../../assets/asset";
 
 const About = () => {
     return (
-        <section className="bg-black text-white px-4 py-20">
+        <section className="bg-black text-white px-4 py-20 mx-w-auto">
             <div className="grid md:grid-cols-2 gap-10 items-center">
-                {/* Left Content - Text */}
+
                 <div>
                     <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
                         <span className="text-lime-500">About</span> Our Mission
@@ -18,7 +18,7 @@ const About = () => {
                     </p>
                 </div>
 
-                {/* Right Content - Image */}
+
                 <div className="w-full h-full">
                     <img
                         src={images.aboutImg}

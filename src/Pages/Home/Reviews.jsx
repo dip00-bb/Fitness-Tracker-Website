@@ -34,7 +34,7 @@ const TestimonialCarousel = () => {
     );
 
   return (
-    <div className="bg-[#0f0f0f] py-20 text-white">
+    <div className="bg-[#0f0f0f] py-20 text-white mx-w-auto px-4 ">
       <div className="px-4 flex flex-col md:flex-row items-center gap-10">
         {/* Left blurb */}
         <div className="md:w-1/2">

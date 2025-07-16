@@ -3,21 +3,28 @@ import React, { use, useState } from 'react';
 import Swal from 'sweetalert2';
 import axiosPublic from '../../../Hooks/useAxiosPublic';
 import { AuthContext } from '../../../Context/AuthContext/AuthContext';
+import useTitle from '../../../Hooks/useTitle'
+
 
 const AddForum = () => {
   /* local form state */
 
-  const {user} = use(AuthContext);
+  useTitle("Dashboard | Add Forum")
+
+  const { user, userRole } = use(AuthContext);
 
 
-  const [title, setTitle]       = useState('');
-  const [tags, setTags]         = useState('');
-  const [content, setContent]   = useState('');
+
+  const [title, setTitle] = useState('');
+  const [tags, setTags] = useState('');
+  const [content, setContent] = useState('');
   const [imageURL, setImageURL] = useState('');
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
 
+
+
+    e.preventDefault();
     if (!title || !content) {
       return Swal.fire('Required', 'Title and content are required.', 'warning');
     }
@@ -29,18 +36,19 @@ const AddForum = () => {
         tags: tags.split(',').map(t => t.trim()).filter(Boolean),
         content,
         imageURL,
-        authorEmail:user.email,
-        author:user.displayName,
-        authorImage:user.photoURL
+        authorEmail: user.email,
+        author: user.displayName,
+        authorImage: user.photoURL,
+        authorRole: userRole
       });
 
       Swal.fire('Success', 'Forum post published!', 'success');
 
       // reset form
-      // setTitle('');
-      // setTags('');
-      // setContent('');
-      // setImageURL('');
+      setTitle('');
+      setTags('');
+      setContent('');
+      setImageURL('');
     } catch (err) {
       Swal.fire('Error', err.response?.data?.message || 'Failed to publish.', 'error');
     }

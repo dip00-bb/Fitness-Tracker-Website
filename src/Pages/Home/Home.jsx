@@ -3,7 +3,6 @@ import Banner from './Banner';
 import Newsletter from './Newsletter';
 import FeaturedSection from './FeaturedSection';
 import About from './About';
-import ReviewCarousel from './Reviews';
 import TestimonialCarousel from './Reviews';
 import TeamSection from './Team';
 import useTitle from '../../Hooks/useTitle';

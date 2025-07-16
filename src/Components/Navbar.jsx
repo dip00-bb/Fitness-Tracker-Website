@@ -40,7 +40,7 @@ const Navbar = () => {
           to="/posts"
           className="text-[1.2rem] hover:text-green-500 transition-colors"
         >
-          Posts
+          Forums
         </NavLink>
       </li>
 

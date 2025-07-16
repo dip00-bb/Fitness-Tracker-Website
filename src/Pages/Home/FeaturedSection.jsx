@@ -21,7 +21,7 @@ const features = [
 
 const FeaturedSection = () => {
   return (
-    <section className="px-4 py-20 bg-black text-white">
+    <section className="px-4 py-20 bg-black text-white mx-w-auto">
       <div className="max-w-6xl mx-auto text-center mb-12">
         <h2 className="text-4xl md:text-6xl font-bold mb-4">Why <span className="text-lime-500">Choose Us</span></h2>
         <p className="text-gray-400 text-lg md:text-xl">Explore our top features designed to elevate your fitness experience.</p>
@@ -31,7 +31,7 @@ const FeaturedSection = () => {
         {features.map((feature, index) => (
           <div
             key={index}
-            className="bg-[#111] p-8 rounded-xl shadow-md hover:shadow-red-500/40 transition duration-300 text-left"
+            className="bg-[#111] p-8 rounded-xl shadow-md hover:shadow-lime-500/40 transition duration-300 text-left"
           >
             <div className="mb-4">{feature.icon}</div>
             <h3 className="text-2xl font-semibold mb-2">{feature.title}</h3>

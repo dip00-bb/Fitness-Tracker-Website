@@ -30,6 +30,7 @@ import BookedTrainer from "../Pages/DashboardPages/Members/BookedTrainer";
 import AdminBalance from "../Pages/DashboardPages/Admin/AdminBalance";
 import NotFoundPage from "../Pages/NotFound/NotFound";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import TrainerAndAdminRoute from "../PrivateRoute/TrainerAndAdminRoute";
 
 
 export const router = createBrowserRouter([
@@ -138,7 +139,7 @@ export const router = createBrowserRouter([
 
             {
                 path: 'add-forums',
-                Component: AddForum,
+                element: <TrainerAndAdminRoute> <AddForum /> </TrainerAndAdminRoute>,
                 errorElement:<ErrorPage></ErrorPage>
             },
 

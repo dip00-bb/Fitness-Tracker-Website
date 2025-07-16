@@ -1,2 +1,7 @@
 @import "tailwindcss";
-/* @plugin "daisyui"; */
+/* @plugin "daisyui"; */ 
+
+.mx-w-auto{
+    max-width: 100rem;
+    margin-inline: auto;
+}

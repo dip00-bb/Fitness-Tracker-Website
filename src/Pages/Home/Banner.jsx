@@ -39,25 +39,25 @@ import { Link } from "react-router";
 
 const Banner = () => {
     return (
-        <div className="relative h-[65vh] overflow-hidden">
+        <div className="relative h-[70vh] overflow-hidden">
 
 
             {/* Background image + content */}
             <div
                 className="relative z-10 px-4 flex justify-center items-center h-full"
                 style={{
-                    backgroundImage: `url(${images.loginImg})`,
-                    backgroundSize: "cover",
+                    backgroundImage: `url(${images.bannerImg})`,
+                    backgroundSize: "100% 100%",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
                 }}
             >
                 {/* Left Content */}
-                <div className="p-6 rounded-lg text-white bg-red md:w-1/2 flex flex-col items-center">
+                <div className="p-6 rounded-lg text-lime-500  bg-red md:w-1/2 flex flex-col items-center">
                     <h1 className="text-4xl md:text-9xl font-bold mb-4  text-center">
-                        Unleash <span className="text-lime-500">Your Power</span>
+                        Unleash <span className="text-white">Your Power</span>
                     </h1>
-                    <p className="text-3xl md:text-3xl mb-6 text-gray-300 text-center">
+                    <p className="text-3xl md:text-3xl mb-6 text-gray-200 text-center">
                         Build strength, sculpt your body, and transform your lifestyle with expert-guided training programs.
                     </p>
                     <Link to='/all-classes' className="bg-lime-400 w-fit text-black px-6 py-3 uppercase tracking-wide font-semibold hover:bg-lime-700 transition-all duration-300 cursor-pointer">
