@@ -31,6 +31,7 @@ import AdminBalance from "../Pages/DashboardPages/Admin/AdminBalance";
 import NotFoundPage from "../Pages/NotFound/NotFound";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import TrainerAndAdminRoute from "../PrivateRoute/TrainerAndAdminRoute";
+import LatestPostDetails from "../Pages/Home/LatestPostDetails";
 
 
 export const router = createBrowserRouter([
@@ -42,63 +43,68 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 Component: Home,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
             {
                 path: '/register',
                 Component: Register,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
             {
                 path: '/login',
                 Component: Login,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
 
             {
                 path: '/beATrainer',
                 element: <PrivateRoute><BeTrainerForm /></PrivateRoute>,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
 
             {
                 path: '/all-trainers',
                 Component: TrainerSection,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
             {
                 path: '/trainer-details/:id',
                 Component: ApprovedTrainerDetails,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
             {
                 path: '/all-classes',
                 Component: AllClasses,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
             {
                 path: '/book-trainer/:id',
                 element: <PrivateRoute> <BookTrainer /> </PrivateRoute>,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
 
             },
             {
                 path: '/payment-page',
                 element: <PrivateRoute><Payments /></PrivateRoute>,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
 
             {
                 path: '/posts',
                 Component: Forums,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
+            },
+            {
+                path: '/forums-details/:id',
+                Component: LatestPostDetails,
+                errorElement: <ErrorPage></ErrorPage>
             }
         ]
     },
     {
         path: '/dashboard',
         element: <PrivateRoute> <DashboardLayout /></PrivateRoute>,
-        errorElement:<ErrorPage></ErrorPage>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
 
 
@@ -109,38 +115,38 @@ export const router = createBrowserRouter([
             {
                 path: 'all-newsletters',
                 element: <AdminRoute> <NewsLetterSubscriber /> </AdminRoute>,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
             {
                 path: 'pending-trainers',
                 element: <AdminRoute> <AllPendingTrainer /> </AdminRoute>,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
             {
                 path: 'pending-trainers/trainers-details/:id',
                 element: <AdminRoute> <TrainerDetails /> </AdminRoute>,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
             {
                 path: 'add-class',
                 element: <AdminRoute> <AddClass /> </AdminRoute>,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
             {
                 path: 'all-trainers-list',
                 element: <AdminRoute> <ManageTrainer /> </AdminRoute>,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
             {
-                path:'balance',
+                path: 'balance',
                 element: <AdminRoute> <AdminBalance /> </AdminRoute>,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
 
             {
                 path: 'add-forums',
                 element: <TrainerAndAdminRoute> <AddForum /> </TrainerAndAdminRoute>,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
 
 
@@ -151,14 +157,14 @@ export const router = createBrowserRouter([
                 path: 'manage-slots',
                 element: <TrainerRoute> <ManageSlot /> </TrainerRoute>,
                 loader: () => fetch('http://localhost:5000/admin-classes'),
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
 
             },
 
             {
                 path: 'add-new-slot',
                 element: <TrainerRoute> <AddNewSlot /> </TrainerRoute>,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
 
             // member 
@@ -166,19 +172,19 @@ export const router = createBrowserRouter([
             {
                 path: 'activity-log',
                 element: <MemberRoute> <ActivityLog /> </MemberRoute>,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
 
             {
                 path: 'profile',
                 element: <MemberRoute> <Profile /> </MemberRoute>,
-                errorElement:<ErrorPage></ErrorPage>
+                errorElement: <ErrorPage></ErrorPage>
             },
 
             {
-                path:'booked-trainer',
-                element:<MemberRoute> <BookedTrainer /> </MemberRoute>,
-                errorElement:<ErrorPage></ErrorPage>
+                path: 'booked-trainer',
+                element: <MemberRoute> <BookedTrainer /> </MemberRoute>,
+                errorElement: <ErrorPage></ErrorPage>
             },
 
 
@@ -191,9 +197,9 @@ export const router = createBrowserRouter([
         ]
     },
     {
-        path:'*',
-        Component:NotFoundPage
-        
+        path: '*',
+        Component: NotFoundPage
+
     }
 
 ])

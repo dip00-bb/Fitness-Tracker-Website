@@ -7,6 +7,7 @@ import TestimonialCarousel from './Reviews';
 import TeamSection from './Team';
 import useTitle from '../../Hooks/useTitle';
 import FeaturedClasses from './FeaturedClasses';
+import LatestPost from './LatestPost';
 
 const Home = () => {
     useTitle("Home")
@@ -17,6 +18,7 @@ const Home = () => {
             <About />
             <FeaturedClasses />
             <TestimonialCarousel />
+            <LatestPost/>
             <Newsletter />
             <TeamSection />
         </div>
