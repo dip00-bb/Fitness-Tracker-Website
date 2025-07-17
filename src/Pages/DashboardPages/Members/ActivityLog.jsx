@@ -14,9 +14,8 @@ const ActivityLog = () => {
 
   const [modalData, setModalData] = useState(null);
 
-  const { user, userRule } = use(AuthContext)
-  console.log("helllo gyus")
-  console.log('dn', userRule)
+  const { user } = use(AuthContext)
+
 
   /* fetch all pending/rejected users */
   const { data, isLoading, isError, } = useQuery({

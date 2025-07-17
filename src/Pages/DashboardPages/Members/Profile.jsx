@@ -2,8 +2,8 @@
 import React, { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../Context/AuthContext/AuthContext';
-import axiosPublic from '../../../Hooks/useAxiosPublic';
 import useTitle from '../../../Hooks/useTitle';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const Profile = () => {
 
@@ -12,19 +12,20 @@ const Profile = () => {
 
     const { user, updateUser, setUser } = useContext(AuthContext);
 
+    const axiosSecure = useAxiosSecure()
 
-    // local form state
+
     const [displayName, setDisplayName] = useState(user?.displayName || '');
     const [photoURL, setPhotoURL] = useState(user?.photoURL || '');
 
-    /* ─── handle submit ─── */
+
     const handleSave = async (e) => {
         e.preventDefault();
         const nowISO = new Date().toISOString();
 
         try {
 
-            await axiosPublic.patch('/update-profile', {
+            await axiosSecure.patch('/update-profile', {
                 email: user.email,
                 name: displayName,
                 photoURL,
@@ -44,7 +45,6 @@ const Profile = () => {
 
             Swal.fire('Updated!', 'Profile saved successfully.', 'success');
         } catch (err) {
-            console.error(err);
             Swal.fire(
                 'Error',
                 err.response?.data?.message || err.message || 'Could not update profile',

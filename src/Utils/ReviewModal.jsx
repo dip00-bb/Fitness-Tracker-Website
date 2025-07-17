@@ -2,6 +2,7 @@
 import React, { use, useState } from 'react';
 import axiosPublic from '../Hooks/useAxiosPublic';
 import { AuthContext } from '../Context/AuthContext/AuthContext';
+import toast from 'react-hot-toast';
 
 const ReviewModal = ({ open, onClose, trainerId, slotId, className}) => {
     const [rating, setRating] = useState(5);
@@ -34,7 +35,7 @@ const ReviewModal = ({ open, onClose, trainerId, slotId, className}) => {
             onClose(true);
             e.target.reset()
         } catch (err) {
-            console.error(err);
+            toast.error(err)
             onClose(false);
         } finally {
             setLoading(false);

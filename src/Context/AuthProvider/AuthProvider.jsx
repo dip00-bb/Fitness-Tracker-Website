@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import { auth } from '../../Firebase/firebase.config';
 import { AuthContext } from '../AuthContext/AuthContext';
 import axiosPublic from '../../Hooks/useAxiosPublic';
+import toast from 'react-hot-toast';
 
 
 
@@ -27,7 +28,7 @@ const AuthProvider = ({ children }) => {
                     const res = await axiosPublic.get(`/user-role/${user.email}`);
                     setUserRole(res.data.role);
                 } catch (err) {
-                    console.error('Error fetching user role:', err);
+                    toast.error(err)
                 } finally {
                     setRoleLoading(false);
                 }
@@ -78,7 +79,7 @@ const AuthProvider = ({ children }) => {
                     });
                     localStorage.setItem('access-token', res.data.token);
                 } catch (err) {
-                    console.error('JWT Fetch Error:', err);
+                    toast.error(err)
                 }
             } else {
                 localStorage.removeItem('access-token');

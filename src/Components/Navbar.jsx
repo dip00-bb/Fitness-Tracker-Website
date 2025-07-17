@@ -71,7 +71,7 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="/profile"
+              to="/user-profile"
               className="text-[1.2rem] hover:text-green-500 transition-colors"
             >
               User Profile

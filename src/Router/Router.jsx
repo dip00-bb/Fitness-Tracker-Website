@@ -100,7 +100,12 @@ export const router = createBrowserRouter([
                 path: '/forums-details/:id',
                 Component: LatestPostDetails,
                 errorElement: <ErrorPage></ErrorPage>
-            }
+            },
+                        {
+                path: 'user-profile',
+                element: <Profile />,
+                errorElement: <ErrorPage></ErrorPage>
+            },
         ]
     },
     {
@@ -161,7 +166,7 @@ export const router = createBrowserRouter([
             {
                 path: 'manage-slots',
                 element: <TrainerRoute> <ManageSlot /> </TrainerRoute>,
-                loader: () => fetch('http://localhost:5000/admin-classes'),
+                loader: () => fetch('https://fitnessserver-vert.vercel.app/admin-classes'),
                 errorElement: <ErrorPage></ErrorPage>
 
             },

@@ -63,11 +63,10 @@ const ManageTrainer = () => {
         confirmButtonColor: '#d33'
       });
     } catch (err) {
-      console.error(err);
       Swal.fire({
         icon: 'error',
         title: 'Failed',
-        text: 'Something went wrong.',
+        text: `Something went wrong. ${err}`,
         confirmButtonColor: '#d33'
       });
     }
