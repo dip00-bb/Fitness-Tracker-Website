@@ -6,12 +6,8 @@ import Loader from '../Utils/Loader';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { user, signout, userRole,roleLoading } = useContext(AuthContext);
+  const { user, signout, userRole, } = useContext(AuthContext);
 
-
-  if(roleLoading){
-    return <Loader/>
-  }
 
   const targetRuleRoute = {
     admin: "all-newsletters",

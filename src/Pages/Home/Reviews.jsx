@@ -38,7 +38,7 @@ const TestimonialCarousel = () => {
       <div className="px-4 flex flex-col md:flex-row items-center gap-10">
         {/* Left blurb */}
         <div className="md:w-1/2">
-          <h2 className="text-4xl font-bold mb-6">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Don’t just take our <span className="text-lime-500">word</span> for it
           </h2>
           <p className="text-gray-400 mb-8 text-lg">

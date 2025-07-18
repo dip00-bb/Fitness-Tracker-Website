@@ -57,7 +57,7 @@ const Banner = () => {
                     <h1 className="text-4xl md:text-9xl font-bold mb-4  text-center">
                         Unleash <span className="text-white">Your Power</span>
                     </h1>
-                    <p className="text-3xl md:text-3xl mb-6 text-gray-200 text-center">
+                    <p className="text-3xl md:text-3xl mb-6 text-lime-200 text-center">
                         Build strength, sculpt your body, and transform your lifestyle with expert-guided training programs.
                     </p>
                     <Link to='/all-classes' className="bg-lime-400 w-fit text-black px-6 py-3 uppercase tracking-wide font-semibold hover:bg-lime-700 transition-all duration-300 cursor-pointer">

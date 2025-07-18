@@ -18,12 +18,10 @@ import { FaDollarSign } from 'react-icons/fa6';
 import Loader from '../../../Utils/Loader';
 
 const DashboardLayout = () => {
-  const {user, userRole,roleLoading } = useContext(AuthContext);
+  const {userRole } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
 
-  if(!user|| roleLoading){
-    return <Loader/>
-  }
+
 
   const linkClass =
     'flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700';

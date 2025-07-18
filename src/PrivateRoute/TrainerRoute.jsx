@@ -7,7 +7,7 @@ const TrainerRoute = ({children}) => {
 
     const {user,userRole,roleLoading}=useContext(AuthContext)
 
-    if( roleLoading || !user ){
+    if(!userRole || roleLoading || !user ){
       return  <Loader/>
     }
 

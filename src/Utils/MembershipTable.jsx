@@ -36,7 +36,7 @@ const plans = [
 
 
 
-const MembershipTable = ({  slotId,trainerId }) => {
+const MembershipTable = ({  slotId,trainerId , trainerName }) => {
 
 
 
@@ -66,7 +66,7 @@ const MembershipTable = ({  slotId,trainerId }) => {
             </ul>
 
             <div className="mt-6 text-center">
-              <Link to={`/payment-page/?plan=${plan.name}&price=${plan.price}&trainerId=${trainerId}&slotId=${slotId}`} className="inline-block bg-lime-600 px-5 py-2 rounded-full font-semibold text-lg">
+              <Link to={`/payment-page/?plan=${plan.name}&price=${plan.price}&trainerId=${trainerId}&slotId=${slotId}& trainerName=${ trainerName}`} className="inline-block bg-lime-600 px-5 py-2 rounded-full font-semibold text-lg">
                 {plan.price} / mo
               </Link>
             </div>

@@ -9,20 +9,29 @@ import toast from 'react-hot-toast';
 
 
 
+
 const AuthProvider = ({ children }) => {
 
-    const [userRole, setUserRole] = useState(null)
+
     const provider = new GoogleAuthProvider()
     const [isLoading, setLoading] = useState(true);
+
+
 
     const [user, setUser] = useState(null)
 
 
-    const [roleLoading, setRoleLoading] = useState(true);
 
+
+    const [userRole, setUserRole] = useState(null)
+    const [roleLoading, setRoleLoading] = useState(true);
+    
     useEffect(() => {
         const fetchRole = async () => {
-            if (user?.email) {
+
+
+
+            if (user?.email && !isLoading) {
                 setRoleLoading(true);
                 try {
                     const res = await axiosPublic.get(`/user-role/${user.email}`);
@@ -38,8 +47,7 @@ const AuthProvider = ({ children }) => {
         };
 
         fetchRole();
-    }, [user]);
-
+    }, [user, isLoading]);
 
 
 
@@ -90,6 +98,7 @@ const AuthProvider = ({ children }) => {
             unSubscribe()
         };
     }, []);
+
 
     const authInformation = {
         user,

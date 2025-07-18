@@ -17,7 +17,6 @@ const CheckoutFrom = () => {
     const elements = useElements();
     const { parcel_ID } = useParams();
     const { user } = use(AuthContext)
-    const navigate = useNavigate()
 
 
     const location = useLocation();
@@ -26,6 +25,7 @@ const CheckoutFrom = () => {
     const price = searchParams.get('price')
 
     const trainerId = searchParams.get('trainerId');
+    const trainerName = searchParams.get(' trainerName');
     const slotId = searchParams.get('slotId');
 
 
@@ -107,9 +107,9 @@ const CheckoutFrom = () => {
                 if (result.paymentIntent.status === 'succeeded') {
                     const paymentResponse = await axiosPublic.post('/save-payment-history', {
                         slotId: slotId,
-                        trainerId:trainerId,
+                        trainerId: trainerId,
                         studentEmail: user.email,
-                        studentName:user.displayName,
+                        studentName: user.displayName,
                         amount: amount,
                         transactionId: result.paymentIntent.id,
                         paymentMethod: result.paymentIntent.payment_method_types[0],
@@ -158,12 +158,16 @@ const CheckoutFrom = () => {
                                 <td className="border border-gray-800  text-gray-800 px-4 py-3 lg:text-xl">{slot.slotDay}</td>
                             </tr>
                             <tr>
-                                <td className="border border-gray-800 text-gray-800  px-4 py-3 font-medium text-xl">{slot.slotName}</td>
-                                <td className="border border-gray-800 text-gray-800 px-4 py-3 lg:text-xl">{user?.email}</td>
+                                <td className="border border-gray-800 text-gray-800  px-4 py-3 font-medium lg:text-xl">{slot.slotName}</td>
+                                <td className="border border-gray-800 text-gray-800 px-4 py-3 lg:text-xl">{trainerName}</td>
                             </tr>
                             <tr>
                                 <td className="border border-gray-800 text-gray-800 px-4 py-3 lg:text-xl">{price}</td>
                                 <td className="border border-gray-800 text-gray-800 px-4 py-3 lg:text-xl">{slot.slotTime}</td>
+                            </tr>
+                            <tr>
+                                <td className="border border-gray-800 text-gray-800 px-4 py-3 lg:text-xl">{user?.displayName}</td>
+                                <td className="border border-gray-800 text-gray-800 px-4 py-3 lg:text-xl">{user?.email}</td>
                             </tr>
                         </tbody>
                     </table>

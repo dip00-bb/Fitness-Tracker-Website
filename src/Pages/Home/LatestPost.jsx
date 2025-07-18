@@ -19,7 +19,7 @@ const LatestPost = () => {
 
     return (
         <section className="py-10 px-4 bg-[#0d0d0d] text-white mx-w-auto">
-            <h2 className="text-3xl font-bold text-lime-500 mb-6">Latest Community Posts</h2>
+            <h2 className="text-4xl md:text-6xl text-center font-bold text-lime-500 mb-6">Latest Community Posts</h2>
 
             <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {data.map((post) => (

@@ -13,7 +13,8 @@ const BookTrainer = () => {
 
     const { search } = useLocation();
     const slotId = new URLSearchParams(search).get('slotId');
-
+    const className = new URLSearchParams(search).get('class');
+    const trainerName=new URLSearchParams(search).get('trainerName');
 
     const {
         data: trainer,
@@ -59,7 +60,7 @@ const BookTrainer = () => {
 
                 <div className='w-full flex flex-col'>
                     <h2 className="text-3xl font-bold text-lime-500 text-center mb-3">{trainer?.fullName.toUpperCase()} <span className='text-white'>WILL BE YOUR TRAINER</span></h2>
-                    <p className="text-gray-100 text-2xl text-center mb-3">You have selected the <span className='text-lime-500'>{slot?.slotName.toUpperCase()}</span> Slot</p>
+                    <p className="text-gray-100 text-2xl text-center mb-3">You have selected the <span className='text-lime-500'>{slot?.slotName.toUpperCase()}</span> slot for <span className='text-lime-500'>{className.toUpperCase()}</span> </p>
                     <p className="text-gray-100 text-2xl text-center">Training will continue for <span className='text-lime-500'>{slot?.slotTime}</span></p>
                 </div>
 
@@ -67,7 +68,7 @@ const BookTrainer = () => {
             </div>
 
 
-            <MembershipTable  slotId={slotId} trainerId={id} />
+            <MembershipTable  slotId={slotId} trainerId={id} trainerName={trainerName} />
 
 
 

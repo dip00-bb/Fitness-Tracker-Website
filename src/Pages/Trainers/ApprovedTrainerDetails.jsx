@@ -156,7 +156,7 @@ const ApprovedTrainerDetails = () => {
 
                   <button
                     key={i}
-                    onClick={() => navigate(`/book-trainer/${id}?slotId=${slot._id}`)}
+                    onClick={() => navigate(`/book-trainer/${id}?slotId=${slot._id}&class=${slot.className}&trainerName=${trainer.fullName}`)}
                     className=" border-1 hover:bg-lime-700 px-4 py-2 rounded-md font-semibold transition hover:scale-105 cursor-pointer"
                   >
                     {slot.slotName} :  {slot.className}
