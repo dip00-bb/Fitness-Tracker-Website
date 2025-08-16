@@ -14,6 +14,7 @@ const AllClasses = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchInput, setSearchInput] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isMostBooed,setMood]=useState(true)
 
   const {
     data: classes = [],
@@ -47,6 +48,14 @@ const AllClasses = () => {
 
       {/* Search bar with button */}
       <div className="mb-10 text-center flex flex-col sm:flex-row justify-center items-center gap-3">
+
+        <button
+          className="px-6 py-2 rounded-lg border-2 font-semibold bg-lime-500 text-black transition-all duration-300 cursor-pointer"
+          onClick={()=>setMood(!isMostBooed)}
+        >
+          {isMostBooed? "Most Booked":"Less Booked"}
+        </button>
+
         <input
           type="text"
           value={searchInput}
@@ -63,7 +72,7 @@ const AllClasses = () => {
       </div>
 
       {/* Class cards */}
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {currentClasses.map((cls) => (
           <div
             key={cls._id}
@@ -107,11 +116,10 @@ const AllClasses = () => {
             <button
               key={pageNum}
               onClick={() => setCurrentPage(pageNum)}
-              className={`px-4 py-2 rounded-md border text-sm font-medium ${
-                pageNum === currentPage
+              className={`px-4 py-2 rounded-md border text-sm font-medium ${pageNum === currentPage
                   ? 'bg-lime-500 text-black border-lime-500'
                   : 'bg-transparent border-gray-600 text-white hover:bg-gray-700'
-              }`}
+                }`}
             >
               {pageNum}
             </button>
