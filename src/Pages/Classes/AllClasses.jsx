@@ -14,16 +14,17 @@ const AllClasses = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchInput, setSearchInput] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-  const [isMostBooed,setMood]=useState(true)
+  const [isMostBooked,setMood]=useState(true)
+
 
   const {
     data: classes = [],
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ['allAdminClasses', searchQuery],
+    queryKey: ['allAdminClasses', searchQuery,isMostBooked],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/admin-classes?search=${searchQuery}`);
+      const res = await axiosPublic.get(`/admin-classes?search=${searchQuery}&sort=${isMostBooked}`);
       return res.data.data || res.data;
     },
   });
@@ -51,9 +52,9 @@ const AllClasses = () => {
 
         <button
           className="px-6 py-2 rounded-lg border-2 font-semibold bg-lime-500 text-black transition-all duration-300 cursor-pointer"
-          onClick={()=>setMood(!isMostBooed)}
+          onClick={()=>setMood(!isMostBooked)}
         >
-          {isMostBooed? "Most Booked":"Less Booked"}
+          {isMostBooked? "Most Booked":"Less Booked"}
         </button>
 
         <input

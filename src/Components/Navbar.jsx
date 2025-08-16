@@ -8,7 +8,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, signout, userRole, } = useContext(AuthContext);
 
-  console.log(menuOpen)
+
   const targetRuleRoute = {
     admin: "all-newsletters",
     trainer: "manage-slots",
