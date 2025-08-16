@@ -23,7 +23,7 @@ const LatestPost = () => {
 
             <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {data.map((post) => (
-                    <div key={post._id} className="bg-[#1a1a1a] rounded-lg shadow p-4 flex flex-col gap-3">
+                    <div key={post._id} className="bg-[#1a1a1a] rounded-lg shadow p-4 flex flex-col gap-3" data-aos="zoom-in-up">
                         <img
                             src={post.imageURL}
                             alt={post.title}

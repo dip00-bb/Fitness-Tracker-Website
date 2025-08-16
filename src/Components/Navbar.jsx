@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router';
 import { AuthContext } from '../Context/AuthContext/AuthContext';
-import { images } from '../assets/asset';
 import Loader from '../Utils/Loader';
+import { X } from 'lucide-react';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, signout, userRole, } = useContext(AuthContext);
 
-
+  console.log(menuOpen)
   const targetRuleRoute = {
     admin: "all-newsletters",
     trainer: "manage-slots",
@@ -118,15 +118,15 @@ const Navbar = () => {
   );
 
   return (
-    <header className="py-6 text-white">
-      <nav className="max-w-[90%] mx-auto px-6 py-3 rounded-3xl border border-gray-700 bg-transparent shadow-sm flex items-center justify-between">
+    <header className="py-1 text-white">
+      <nav className="bg-black py-2 max-w-[95%] md:max-w-[90%] mx-auto px-6 rounded-xl border border-gray-700 shadow-sm flex items-center justify-between">
 
         <div className="flex items-center gap-4">
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle Menu"
-            className="lg:hidden p-2 text-gray-800 focus:outline-none"
+            className="lg:hidden p-2 text-gray-800 focus:outline-none cursor-pointer"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -145,8 +145,11 @@ const Navbar = () => {
           </button>
 
 
-          <NavLink to="/" className="hidden lg:block h-12">
-            <img src={images.webLogo} alt="logo" className="h-full w-auto" />
+          <NavLink to="/" className="hidden lg:block">
+            {/* <img src={images.webLogo} alt="logo" className="h-full w-auto" /> */}
+            <h3 className="text-2xl font-bold text-white">
+              Fit<span className="text-lime-500">Ness</span>
+            </h3>
           </NavLink>
         </div>
 
@@ -157,13 +160,18 @@ const Navbar = () => {
         <ul className="flex items-center gap-3">{authButtons}</ul>
       </nav>
 
-      {menuOpen && (
-        <ul className="lg:hidden mt-2 mx-auto max-w-[90%] bg-gray-800/90 rounded-xl p-4 space-y-2 shadow-md">
+
+      <div className={`mt-2 mx-auto max-w-[90%] bg-gray-800/90 p-4 space-y-2 shadow-md absolute h-screen w-3xs -top-2 flex justify-between transition-all duration-300 ${menuOpen ? " left-[0.1px] " : "-left-[270px]"}`}>
+        <ul className='space-y-4'>
           {navLinks}
           <hr className="border-gray-700" />
           {authButtons}
         </ul>
-      )}
+        <div className='cursor-pointer' onClick={() => setMenuOpen(false)}>
+          <X />
+        </div>
+      </div>
+
     </header>
   );
 };

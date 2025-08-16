@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import axiosPublic from '../../Hooks/useAxiosPublic';
 import Loader from '../../Utils/Loader';
-
+import { Typewriter } from "react-simple-typewriter";
 
 
 const fetchLatestReviews = async () => {
@@ -38,8 +38,20 @@ const TestimonialCarousel = () => {
       <div className="px-4 flex flex-col md:flex-row items-center gap-10">
         {/* Left blurb */}
         <div className="md:w-1/2">
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            Don’t just take our <span className="text-lime-500">word</span> for it
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-center">
+            Don’t just take our{" "}
+            <span className="text-lime-500">
+              <Typewriter
+                words={["word", "reviews", "experience", "results"]}
+                loop={true}
+                cursor
+                cursorStyle="_"
+                typeSpeed={100}
+                deleteSpeed={60}
+                delaySpeed={1000}
+              />
+            </span>{" "}
+            for it
           </h2>
           <p className="text-gray-400 mb-8 text-lg">
             Witness it firsthand, directly from our lovely members.

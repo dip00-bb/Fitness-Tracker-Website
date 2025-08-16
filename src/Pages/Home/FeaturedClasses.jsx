@@ -30,6 +30,7 @@ const FeaturedClasses = () => {
                     <article
                         key={cls._id}
                         className="rounded-2xl shadow-sm bg-base-100 overflow-hidden hover:shadow-md transition"
+                        data-aos="zoom-in-down"
                     >
                         <div className='h-52 md:h-72'>
                             <img
