@@ -33,6 +33,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import TrainerAndAdminRoute from "../PrivateRoute/TrainerAndAdminRoute";
 import LatestPostDetails from "../Pages/Home/LatestPostDetails";
 import WellcomePage from "../Pages/DashboardPages/WelcomePage/WellcomePage";
+import WelcomePageAdmin from "../Pages/DashboardPages/WelcomePage/WelcomePageAdmin";
 
 
 
@@ -129,7 +130,7 @@ export const router = createBrowserRouter([
 
             {
                 path: 'admin-welcome-page',
-                element: <WellcomePage />
+                element: <WelcomePageAdmin />
             }
             ,
             {

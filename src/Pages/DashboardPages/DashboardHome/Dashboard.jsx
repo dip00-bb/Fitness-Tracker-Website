@@ -22,8 +22,13 @@ const DashboardLayout = () => {
   const { userRole } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const { user } = use(AuthContext)
-console.log(user)
 
+  const targetRuleRoute = {
+    admin: "admin-welcome-page",
+    trainer: "trainer-welcome-page",
+    member: "user-welcome-page",
+  };
+  const redirectRoute = targetRuleRoute[userRole]
 
   const linkClass =
     'flex items-center gap-2 px-4 py-2';
@@ -53,14 +58,14 @@ console.log(user)
             src={user.photoURL}
           />
           <p className="text-center mt-3 text-white font-medium">{user.displayName}</p>
-           <p className="text-center mt-3 text-white font-medium">{user.email}</p>
+          <p className="text-center mt-3 text-white font-medium">{user.email}</p>
         </div>
 
         {/* Nav Links */}
         <ul className="space-y-1 text-white px-2">
           <li>
             <NavLink
-              to="/dashboard/welcome-page"
+              to={`/dashboard/${redirectRoute}`}
               className={`${linkClass} active-route-dashboard`}
               onClick={() => setIsOpen(false)}
             >
@@ -82,7 +87,7 @@ console.log(user)
               <li>
                 <NavLink
                   to="/dashboard/all-trainers-list"
-                  className={linkClass}
+                  className={`${linkClass} active-route-dashboard`}
                   onClick={() => setIsOpen(false)}
                 >
                   <GiMuscleUp /> All Trainers
@@ -91,7 +96,7 @@ console.log(user)
               <li>
                 <NavLink
                   to="/dashboard/pending-trainers"
-                  className={linkClass}
+                  className={`${linkClass} active-route-dashboard`}
                   onClick={() => setIsOpen(false)}
                 >
                   <MdPending /> Applied Trainers
@@ -100,7 +105,7 @@ console.log(user)
               <li>
                 <NavLink
                   to="/dashboard/add-class"
-                  className={linkClass}
+                  className={`${linkClass} active-route-dashboard`}
                   onClick={() => setIsOpen(false)}
                 >
                   <FaLocationArrow /> Add Class
@@ -109,7 +114,7 @@ console.log(user)
               <li>
                 <NavLink
                   to="/dashboard/balance"
-                  className={linkClass}
+                  className={`${linkClass} active-route-dashboard`}
                   onClick={() => setIsOpen(false)}
                 >
                   <FaDollarSign /> Balance
@@ -123,7 +128,7 @@ console.log(user)
               <li>
                 <NavLink
                   to="/dashboard/manage-slots"
-                  className={linkClass}
+                  className={`${linkClass} active-route-dashboard`}
                   onClick={() => setIsOpen(false)}
                 >
                   <FaClipboardList /> Manage Slots
@@ -132,7 +137,7 @@ console.log(user)
               <li>
                 <NavLink
                   to="/dashboard/add-new-slot"
-                  className={linkClass}
+                  className={`${linkClass} active-route-dashboard`}
                   onClick={() => setIsOpen(false)}
                 >
                   <FaCalendarPlus /> Add New Slot
@@ -145,7 +150,7 @@ console.log(user)
             <li>
               <NavLink
                 to="/dashboard/add-forums"
-                className={linkClass}
+                className={`${linkClass} active-route-dashboard`}
                 onClick={() => setIsOpen(false)}
               >
                 <FaPlusCircle /> Add New Forum
