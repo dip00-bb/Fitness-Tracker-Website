@@ -32,6 +32,7 @@ import NotFoundPage from "../Pages/NotFound/NotFound";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import TrainerAndAdminRoute from "../PrivateRoute/TrainerAndAdminRoute";
 import LatestPostDetails from "../Pages/Home/LatestPostDetails";
+import WellcomePage from "../Pages/DashboardPages/WelcomePage/WellcomePage";
 
 
 
@@ -101,7 +102,7 @@ export const router = createBrowserRouter([
                 Component: LatestPostDetails,
                 errorElement: <ErrorPage></ErrorPage>
             },
-                        {
+            {
                 path: 'user-profile',
                 element: <Profile />,
                 errorElement: <ErrorPage></ErrorPage>
@@ -121,7 +122,21 @@ export const router = createBrowserRouter([
             // },
 
             // admin 
+            {
+                path: 'user-welcome-page',
+                element: <WellcomePage />
+            },
 
+            {
+                path: 'admin-welcome-page',
+                element: <WellcomePage />
+            }
+            ,
+            {
+                path: 'trainer-welcome-page',
+                element: <WellcomePage />
+            }
+            ,
             {
                 path: 'all-newsletters',
                 element: <AdminRoute> <NewsLetterSubscriber /> </AdminRoute>,

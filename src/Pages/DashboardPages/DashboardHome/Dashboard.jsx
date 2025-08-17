@@ -1,6 +1,7 @@
 // src/layouts/DashboardLayout.jsx
-import React, { useState, useContext } from 'react';
-import { NavLink, Outlet } from 'react-router';
+import React, { useState, useContext, use } from 'react';
+import { Link, NavLink, Outlet } from 'react-router';
+import Avatar from '@mui/material/Avatar';
 import {
   FaHome,
   FaLocationArrow,
@@ -18,13 +19,14 @@ import { FaDollarSign } from 'react-icons/fa6';
 import Loader from '../../../Utils/Loader';
 
 const DashboardLayout = () => {
-  const {userRole } = useContext(AuthContext);
+  const { userRole } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
-
+  const { user } = use(AuthContext)
+console.log(user)
 
 
   const linkClass =
-    'flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700';
+    'flex items-center gap-2 px-4 py-2';
 
   return (
     <div className="min-h-screen bg-base-100 text-base-content grid lg:grid-cols-[260px_1fr] ">
@@ -35,28 +37,43 @@ const DashboardLayout = () => {
         />
       )}
 
+
+
+
       <aside
-        className={` bg-gray-700 fixed lg:static top-0 left-0 z-40 h-full w-64 overflow-y-auto bg-base-200 transform transition-transform duration-300 lg:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'
-          }`}
+        className={`bg-[#0D1117] fixed lg:static top-0 left-0 z-40 h-full w-64 overflow-y-auto transform transition-transform duration-300 lg:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'
+          } grid grid-rows-[auto,1fr,auto]`}
       >
-        <div className="px-4 py-4 border-b border-base-300 flex items-center lg:hidden">
-          <span className="text-lg font-semibold">Dashboard</span>
+        {/* Avatar & User Info */}
+        <div className="py-6">
+          <Avatar
+            sx={{ width: 80, height: 80 }}
+            className="mx-auto border-2 border-[#288647] shadow-md"
+            alt="Cindy Baker"
+            src={user.photoURL}
+          />
+          <p className="text-center mt-3 text-white font-medium">{user.displayName}</p>
+           <p className="text-center mt-3 text-white font-medium">{user.email}</p>
         </div>
 
-        <ul className="mt-4 space-y-1 text-white">
+        {/* Nav Links */}
+        <ul className="space-y-1 text-white px-2">
           <li>
-            <NavLink to="/" className={linkClass} onClick={() => setIsOpen(false)}>
+            <NavLink
+              to="/dashboard/welcome-page"
+              className={`${linkClass} active-route-dashboard`}
+              onClick={() => setIsOpen(false)}
+            >
               <FaHome /> Home
             </NavLink>
           </li>
 
-
-          {userRole === 'admin' && (
+          {userRole === "admin" && (
             <>
               <li>
                 <NavLink
                   to="/dashboard/all-newsletters"
-                  className={linkClass}
+                  className={`${linkClass} active-route-dashboard`}
                   onClick={() => setIsOpen(false)}
                 >
                   <FaMedal /> All NewsLetter
@@ -89,7 +106,6 @@ const DashboardLayout = () => {
                   <FaLocationArrow /> Add Class
                 </NavLink>
               </li>
-
               <li>
                 <NavLink
                   to="/dashboard/balance"
@@ -99,12 +115,10 @@ const DashboardLayout = () => {
                   <FaDollarSign /> Balance
                 </NavLink>
               </li>
-              
             </>
           )}
 
-
-          {userRole === 'trainer' && (
+          {userRole === "trainer" && (
             <>
               <li>
                 <NavLink
@@ -127,7 +141,7 @@ const DashboardLayout = () => {
             </>
           )}
 
-          {(userRole === 'trainer' || userRole === 'admin') && (
+          {(userRole === "trainer" || userRole === "admin") && (
             <li>
               <NavLink
                 to="/dashboard/add-forums"
@@ -139,13 +153,12 @@ const DashboardLayout = () => {
             </li>
           )}
 
-
-          {userRole === 'member' && (
+          {userRole === "member" && (
             <>
               <li>
                 <NavLink
                   to="/dashboard/activity-log"
-                  className={linkClass}
+                  className={`${linkClass} active-route-dashboard`}
                   onClick={() => setIsOpen(false)}
                 >
                   <FaClipboardList /> Activity Log
@@ -154,7 +167,7 @@ const DashboardLayout = () => {
               <li>
                 <NavLink
                   to="/dashboard/profile"
-                  className={linkClass}
+                  className={`${linkClass} active-route-dashboard`}
                   onClick={() => setIsOpen(false)}
                 >
                   <FaAddressCard /> Profile Page
@@ -163,7 +176,7 @@ const DashboardLayout = () => {
               <li>
                 <NavLink
                   to="/dashboard/booked-trainer"
-                  className={linkClass}
+                  className={`${linkClass} active-route-dashboard`}
                   onClick={() => setIsOpen(false)}
                 >
                   <FaUserTie /> Booked Trainer
@@ -172,6 +185,16 @@ const DashboardLayout = () => {
             </>
           )}
         </ul>
+
+        {/* Footer */}
+        <div className="py-4 border-t border-gray-700 text-center self-end">
+          <Link
+            to="/"
+            className="text-white block hover:text-[#1F6FEB] transition"
+          >
+            Back Home
+          </Link>
+        </div>
       </aside>
 
       {/* ─────────── Main content ─────────── */}

@@ -10,11 +10,11 @@ const Navbar = () => {
 
 
   const targetRuleRoute = {
-    admin: "all-newsletters",
-    trainer: "manage-slots",
-    member: "activity-log",
+    admin: "admin-welcome-page",
+    trainer: "trainer-welcome-page",
+    member: "user-welcome-page",
   };
-  const redirectRoute = targetRuleRoute[userRole] || "activity-log";
+  const redirectRoute = targetRuleRoute[userRole] || "user-welcome-page";
 
 
 

@@ -1,7 +1,28 @@
 @import "tailwindcss";
-/* @plugin "daisyui"; */ 
+/* @plugin "daisyui"; */
 
-.mx-w-auto{
+.mx-w-auto {
     max-width: 100rem;
     margin-inline: auto;
+}
+
+
+/*     */
+
+
+.active-route-dashboard.active{
+    background-color: #288647;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transform: translateX(30px);
+    transition: all 0.3s ease-in-out;
+    /* color: #1b3a26; */
+} 
+
+
+.card-bg{
+    background-color: #288647;
 }
