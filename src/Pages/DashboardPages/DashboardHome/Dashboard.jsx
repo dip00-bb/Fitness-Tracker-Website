@@ -50,7 +50,7 @@ const DashboardLayout = () => {
           } grid grid-rows-[auto,1fr,auto]`}
       >
         {/* Avatar & User Info */}
-        <div className="py-6">
+        <div className="py-6 self-center">
           <Avatar
             sx={{ width: 80, height: 80 }}
             className="mx-auto border-2 border-[#288647] shadow-md"

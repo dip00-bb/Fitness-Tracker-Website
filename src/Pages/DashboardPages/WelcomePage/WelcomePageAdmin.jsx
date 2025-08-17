@@ -1,24 +1,31 @@
 import React from 'react';
+import AdminCards from './AdminInfo/AdminCards';
+import TrafficSources from './AdminInfo/AdminTrafic';
+import CountryVisitors from './AdminInfo/CountryVisitors';
+import CompanyCostChart from './AdminInfo/CompanyCostChart';
+
+
+
+
 
 const WelcomePageAdmin = () => {
     return (
-        <div>
-            <p>Monitor Everything Any Where</p>
+        <div className='text-white space-y-10 md:space-y-20'>
+            <p className='text-3xl md:text-5xl font-bold'>Monitor Everything Any Where</p>
+
+            <div> <AdminCards /> </div>
+
+            <div className="flex flex-wrap gap-10">
+                <div className='flex-1'>
+                    <TrafficSources  />
+                </div>
+                <div className='flex-1' >
+                    <CountryVisitors   />
+                </div>
+            </div>
 
             <div>
-                <div>
-                    Weekly Visitor
-                </div>
-                <div>
-                    New Visitor
-                </div>
-                <div>
-                    Total Application
-                </div>
-
-                <div>
-                    Total Revenue
-                </div>
+                <CompanyCostChart/>
             </div>
         </div>
     );

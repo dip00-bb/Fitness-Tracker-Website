@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* @plugin "daisyui"; */
 
 .mx-w-auto {
@@ -7,10 +9,15 @@
 }
 
 
-/*     */
+
+* {
+    font-family: "Roboto", sans-serif;
+}
 
 
-.active-route-dashboard.active{
+
+
+.active-route-dashboard.active {
     background-color: #288647;
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
@@ -20,9 +27,9 @@
     transform: translateX(30px);
     transition: all 0.3s ease-in-out;
     /* color: #1b3a26; */
-} 
+}
 
 
-.card-bg{
+.card-bg {
     background-color: #288647;
 }
