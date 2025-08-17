@@ -1,43 +1,87 @@
-import { Users, UserPlus, Eye, DollarSign } from "lucide-react";
+import React from 'react';
+import { GraduationCap, UserPlus, Eye, DollarSign } from "lucide-react";
 
-export default function TrainerStatsCard() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-      {/* Total Students */}
-      <div className="flex items-center justify-between bg-gradient-to-r from-indigo-600 to-indigo-800 p-6 rounded-2xl shadow-lg">
-        <div>
-          <h3 className="text-gray-300 text-sm">Total Students</h3>
-          <p className="text-2xl font-bold text-white">120</p>
-        </div>
-        <Users className="w-10 h-10 text-indigo-300" />
-      </div>
+const cards = [
+    {
+        title: "Total Students",
+        value: "2.3k",
+        change: "+3.2%",
+        icon: GraduationCap,
+        bg: "from-blue-500/20 to-blue-900/40",
+        iconColor: "text-blue-400",
+        chartColor: "stroke-blue-400",
+    },
+    {
+        title: "New Students",
+        value: "120",
+        change: "+1.5%",
+        icon: UserPlus,
+        bg: "from-purple-500/20 to-purple-900/40",
+        iconColor: "text-purple-400",
+        chartColor: "stroke-purple-400",
+    },
+    {
+        title: "Profile Visits",
+        value: "4.8k",
+        change: "+4.3%",
+        icon: Eye,
+        bg: "from-amber-500/20 to-amber-900/40",
+        iconColor: "text-amber-400",
+        chartColor: "stroke-amber-400",
+    },
+    {
+        title: "Total Revenue",
+        value: "$12.5k",
+        change: "+6.1%",
+        icon: DollarSign,
+        bg: "from-rose-500/20 to-rose-900/40",
+        iconColor: "text-rose-400",
+        chartColor: "stroke-rose-400",
+    },
+];
 
-      {/* New Students */}
-      <div className="flex items-center justify-between bg-gradient-to-r from-green-600 to-green-800 p-6 rounded-2xl shadow-lg">
-        <div>
-          <h3 className="text-gray-300 text-sm">New Students</h3>
-          <p className="text-2xl font-bold text-white">15</p>
-        </div>
-        <UserPlus className="w-10 h-10 text-green-300" />
-      </div>
+const AdminCards = () => {
+    return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {cards.map((card, i) => (
+                <div
+                    key={i}
+                    className={`relative p-6 rounded-2xl bg-gradient-to-br ${card.bg} shadow-lg border border-white/10`}
+                >
+                    {/* Icon */}
+                    <div className={`${card.iconColor}`}>
+                        <card.icon size={26} />
+                    </div>
 
-      {/* Profile Visits */}
-      <div className="flex items-center justify-between bg-gradient-to-r from-pink-600 to-pink-800 p-6 rounded-2xl shadow-lg">
-        <div>
-          <h3 className="text-gray-300 text-sm">Profile Visits</h3>
-          <p className="text-2xl font-bold text-white">350</p>
-        </div>
-        <Eye className="w-10 h-10 text-pink-300" />
-      </div>
+                    {/* Content */}
+                    <div className="text-gray-200 text-sm">{card.title}</div>
+                    <div className="text-2xl font-bold text-white">{card.value}</div>
+                    <div
+                        className={`text-sm mt-2 ${card.change.startsWith("+") ? "text-green-400" : "text-red-400"
+                            }`}
+                    >
+                        {card.change}
+                    </div>
 
-      {/* Total Revenue */}
-      <div className="flex items-center justify-between bg-gradient-to-r from-yellow-600 to-yellow-800 p-6 rounded-2xl shadow-lg">
-        <div>
-          <h3 className="text-gray-300 text-sm">Total Revenue</h3>
-          <p className="text-2xl font-bold text-white">$2,450</p>
+                    {/* Fake Mini Chart */}
+                    <svg
+                        className="absolute bottom-2 right-2 w-20 h-10 opacity-60"
+                        viewBox="0 0 100 50"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M0 40 L20 25 L40 35 L60 15 L80 25 L100 10"
+                            className={card.chartColor}
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        />
+                    </svg>
+                </div>
+            ))}
         </div>
-        <DollarSign className="w-10 h-10 text-yellow-300" />
-      </div>
-    </div>
-  );
-}
+    );
+};
+
+export default AdminCards;
