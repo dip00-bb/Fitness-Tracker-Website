@@ -47,7 +47,7 @@ const DashboardLayout = () => {
 
       <aside
         className={`bg-[#0D1117] fixed lg:static top-0 left-0 z-40 h-full w-64 overflow-y-auto transform transition-transform duration-300 lg:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'
-          } grid grid-rows-[auto,1fr,auto]`}
+          } grid grid-rows-[auto,1fr,auto] overflow-hidden`}
       >
         {/* Avatar & User Info */}
         <div className="py-6 self-center">

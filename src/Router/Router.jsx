@@ -34,6 +34,7 @@ import TrainerAndAdminRoute from "../PrivateRoute/TrainerAndAdminRoute";
 import LatestPostDetails from "../Pages/Home/LatestPostDetails";
 import WellcomePage from "../Pages/DashboardPages/WelcomePage/WellcomePage";
 import WelcomePageAdmin from "../Pages/DashboardPages/WelcomePage/WelcomePageAdmin";
+import WelcomePageTrainer from "../Pages/DashboardPages/WelcomePage/TrainerInfo/WelcomePageTrainer";
 
 
 
@@ -135,7 +136,7 @@ export const router = createBrowserRouter([
             ,
             {
                 path: 'trainer-welcome-page',
-                element: <WellcomePage />
+                element: <WelcomePageTrainer />
             }
             ,
             {
