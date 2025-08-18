@@ -5,7 +5,7 @@ const ThemeProvider = ({ children }) => {
 
     const [mode, setMode] = useState(() => {
         if (typeof window !== "undefined") {
-            return localStorage.getItem("mode") || "light";
+            return localStorage.getItem("mode") || "dark";
         }
         return "light"; 
     });
