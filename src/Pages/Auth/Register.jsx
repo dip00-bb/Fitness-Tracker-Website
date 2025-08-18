@@ -4,8 +4,8 @@ import useTitle from "../../Hooks/useTitle";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import axiosPublic from "../../Hooks/useAxiosPublic";
 import { errorSwal, registerSuccessSwal } from "../../Utils/swal";
+import axiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
 

@@ -2,6 +2,7 @@ import React, { use } from 'react';
 import { AuthContext } from '../../../../Context/AuthContext/AuthContext';
 import TrainerStatsCard from './TrainerStatsCard';
 import TrainerBarChart from './TrainerBarChart';
+import ClassBookingPieChart from './ClassBookingPieChart';
 
 const WelcomePageTrainer = () => {
     const {user}=use(AuthContext)
@@ -13,6 +14,9 @@ const WelcomePageTrainer = () => {
             </div>
             <div>
                 <TrainerBarChart/>
+            </div>
+            <div>
+                <ClassBookingPieChart/>
             </div>
         </div>
     );

@@ -1,8 +1,8 @@
 import React from 'react';
-import AdminCards from './AdminInfo/AdminCards';
-import TrafficSources from './AdminInfo/AdminTrafic';
-import CountryVisitors from './AdminInfo/CountryVisitors';
-import CompanyCostChart from './AdminInfo/CompanyCostChart';
+import AdminCards from './AdminCards';
+import TrafficSources from './AdminTrafic';
+import CountryVisitors from './CountryVisitors';
+import CompanyCostChart from './CompanyCostChart';
 
 
 

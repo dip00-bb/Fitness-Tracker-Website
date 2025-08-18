@@ -32,9 +32,10 @@ import NotFoundPage from "../Pages/NotFound/NotFound";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import TrainerAndAdminRoute from "../PrivateRoute/TrainerAndAdminRoute";
 import LatestPostDetails from "../Pages/Home/LatestPostDetails";
-import WellcomePage from "../Pages/DashboardPages/WelcomePage/WellcomePage";
-import WelcomePageAdmin from "../Pages/DashboardPages/WelcomePage/WelcomePageAdmin";
+import WellcomePage from "../Pages/DashboardPages/WelcomePage/userinfo/WellcomePage";
+import WelcomePageAdmin from "../Pages/DashboardPages/WelcomePage/AdminInfo/WelcomePageAdmin";
 import WelcomePageTrainer from "../Pages/DashboardPages/WelcomePage/TrainerInfo/WelcomePageTrainer";
+
 
 
 

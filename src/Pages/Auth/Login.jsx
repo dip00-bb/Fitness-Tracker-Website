@@ -5,8 +5,8 @@ import useTitle from "../../Hooks/useTitle";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import { useForm } from "react-hook-form";
 import { loginSuccessSwal, } from "../../Utils/swal";
-import axiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import axiosPublic from "../../hooks/useAxiosPublic";
 
 
 const Login = () => {

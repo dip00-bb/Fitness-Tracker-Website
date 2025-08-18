@@ -1,10 +1,11 @@
 
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import axiosPublic from '../../Hooks/useAxiosPublic';
+
 import Loader from '../../Utils/Loader';
 import { Link } from 'react-router';
 import useTitle from '../../Hooks/useTitle';
+import axiosPublic from '../../Hooks/useAxiosPublic';
 
 const ITEMS_PER_PAGE = 6;
 
